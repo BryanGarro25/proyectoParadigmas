@@ -20,6 +20,9 @@ public class Proyecto1_paradigmas {
 
         String a = "me cago en adrian";
         int c = 1;
+        
+        probando commit de adrian
+                
 
     }
     
