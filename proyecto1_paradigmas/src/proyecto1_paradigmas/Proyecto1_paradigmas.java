@@ -17,13 +17,6 @@ public class Proyecto1_paradigmas {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.print("hola");
-
-        String a = "me cago en adrian";
-        int c = 1;
-        
-        probando commit de adrian
-                
-
     }
     
 }
