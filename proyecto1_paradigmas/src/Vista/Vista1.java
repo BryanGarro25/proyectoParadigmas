@@ -5,20 +5,36 @@
  */
 package Vista;
 
+import Controller.Controller;
+import Modelo.Modelo;
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  *
  * @author Lencho-PC
  */
-public class Vista1 extends javax.swing.JFrame {
+public class Vista1 extends javax.swing.JFrame implements Observer {
 
-    /**
-     * Creates new form Vista1
-     */
+    private Controller elControl;
+    private Modelo elModelo;
+
+    
+    
     public Vista1() {
         initComponents();
         this.setTitle("Editor de Formulas");
     }
 
+    
+    public void setController(Controller control){
+        this.elControl=control;
+    }
+    public void setModel(Modelo elModelo){
+        this.elModelo=elModelo;
+        elModelo.addObserver(this);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -151,4 +167,10 @@ public class Vista1 extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+         //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

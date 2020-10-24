@@ -14,6 +14,9 @@ import java.util.Scanner;
 import java.util.regex.*;
 
 public class mainTest {
+    
+    
+    
     public static boolean counterP(String line){
         int counterA = 0;
         int counterC = 0;
