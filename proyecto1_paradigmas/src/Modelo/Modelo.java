@@ -14,9 +14,7 @@ import java.util.Observer;
  */
 public class Modelo extends java.util.Observable {
 
-    public static void addObserver(Vista1 aThis) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     private Expresion laExpresion;
     private Evaluador elEvaluador;
 

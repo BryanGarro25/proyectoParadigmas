@@ -7,12 +7,14 @@ package Vista;
 
 import Controller.Controller;
 import Modelo.Modelo;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  *
  * @author Lencho-PC
  */
-public class Vista1 extends javax.swing.JFrame {
+public class Vista1 extends javax.swing.JFrame implements Observer {
 
     private Controller elControl;
     private Modelo elModelo;
@@ -165,5 +167,10 @@ public class Vista1 extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+         //To change body of generated methods, choose Tools | Templates.
+    }
 
 }
