@@ -36,8 +36,6 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jButton1.setText("Verificar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -135,7 +135,6 @@ public class Vista1 extends javax.swing.JFrame implements Observer {
     private void opcionNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcionNuevoMouseClicked
        Vista2 vista2 = new Vista2();
        vista2.setVisible(true);
-       this.setVisible(false);
     }//GEN-LAST:event_opcionNuevoMouseClicked
 
     /**
