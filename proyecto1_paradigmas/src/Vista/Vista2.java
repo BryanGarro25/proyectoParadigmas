@@ -5,17 +5,21 @@
  */
 package Vista;
 
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  *
  * @author Lencho-PC
  */
-public class Vista2 extends javax.swing.JFrame {
+public class Vista2 extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form Vista2
      */
     public Vista2() {
         initComponents();
+        this.setTitle("Formulas");
     }
 
     /**
@@ -142,4 +146,8 @@ public class Vista2 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+    }
 }

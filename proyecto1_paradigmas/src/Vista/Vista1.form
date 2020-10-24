@@ -4,55 +4,59 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="opcionEdicion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Edici&#xf3;n"/>
+          </Properties>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="opcionArchivo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Archivo"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <SubComponents>
-            <Menu class="javax.swing.JMenu" name="jMenu10">
+            <Menu class="javax.swing.JMenu" name="opcionNuevo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nuevo "/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="opcionNuevoMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="opcionNuevoActionPerformed"/>
+              </Events>
             </Menu>
-            <Menu class="javax.swing.JMenu" name="jMenu7">
+            <Menu class="javax.swing.JMenu" name="opcionAbrir">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Abrir..."/>
               </Properties>
             </Menu>
-            <Menu class="javax.swing.JMenu" name="jMenu8">
+            <Menu class="javax.swing.JMenu" name="opcionGuardar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Guardar"/>
               </Properties>
             </Menu>
-            <Menu class="javax.swing.JMenu" name="jMenu9">
+            <Menu class="javax.swing.JMenu" name="opcionSalir">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Salir"/>
               </Properties>
             </Menu>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Edici&#xf3;n"/>
-          </Properties>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu3">
+        <Menu class="javax.swing.JMenu" name="opcionVista">
           <Properties>
             <Property name="text" type="java.lang.String" value="Vista"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu4">
+        <Menu class="javax.swing.JMenu" name="herramientas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Herramientas"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu5">
+        <Menu class="javax.swing.JMenu" name="ventanas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ventanas"/>
           </Properties>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu6">
+        <Menu class="javax.swing.JMenu" name="ayuda">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ayuda"/>
           </Properties>
@@ -103,7 +107,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="352" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="354" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
