@@ -9,6 +9,7 @@
  * @author Bryan
  */
 
+import Modelo.Expresion;
 import java.io.File;
 import java.util.Scanner;
 import java.util.regex.*;
@@ -36,8 +37,12 @@ public class mainTest {
             Scanner input = new Scanner(new File(path));
             while (input.hasNextLine()) {
                 String line = input.nextLine();
+                Expresion e = new Expresion(line);
+                System.out.println("Hilera " + line + " postfija: "+e.getPostFija(line));
+                
                 //line = line.replaceAll("\\(", "w");
                 //line = line.replaceAll("\\)", "o");
+                //line = line.replaceAll("->", ">");
                 Matcher acepta = patron.matcher(line);
                 
                 if(counterP(line) && acepta.matches()){

@@ -1,7 +1,5 @@
 ((p∧q))
 p∧r
 q∧r
-(p∧q)v(p∧r)v(q∧r)
-((p∧q)v(p∧r))v(q∧r)
-((--------------p∧-q)v(-p∧-r))v(-q∧-r)
--(-(p∧q)v-(p∧r))v-(q∧r)
+-p∧r
+-(p∧r)
