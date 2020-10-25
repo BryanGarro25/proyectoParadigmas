@@ -9,11 +9,15 @@
  * @author Bryan
  */
 
+import Modelo.Expresion;
 import java.io.File;
 import java.util.Scanner;
 import java.util.regex.*;
 
 public class mainTest {
+    
+    
+    
     public static boolean counterP(String line){
         int counterA = 0;
         int counterC = 0;
@@ -32,9 +36,19 @@ public class mainTest {
         try {
             Scanner input = new Scanner(new File(path));
             while (input.hasNextLine()) {
+                System.out.println("\n \n");
                 String line = input.nextLine();
+                Expresion e = new Expresion(line);
+              
+                
                 //line = line.replaceAll("\\(", "w");
                 //line = line.replaceAll("\\)", "o");
+                line = line.replaceAll("<->", "!");
+                line = line.replaceAll("->", ">");
+                
+                line = line.replaceAll("⊻", "#");
+                
+                  System.out.println("Hilera " + line + " postfija: "+e.getPostFija(line));
                 Matcher acepta = patron.matcher(line);
                 
                 if(counterP(line) && acepta.matches()){
@@ -52,7 +66,7 @@ public class mainTest {
     //(p^q)v(p^r)v(q^r)
     public static void main(String[] args) {
         System.out.println("******************Hileras Aceptadas******************");
-        String regex = "[-\\(-]*[pqr][v∧]-*[pqr]\\)*([∧v][-\\(-]*[pqr][v∧]-*[pqr]\\)*)*";
+        String regex = "[-\\(-]*[pqr][>!#v∧]-*[pqr]\\)*([>!#v∧][-\\(-]*[pqr][>!#v∧]-*[pqr]\\)*)*";
         
         reader("C:/Users/Bryan/Desktop/proyecto/ejemplo 1 (aceptar).txt",regex);//Respuesta 
         
