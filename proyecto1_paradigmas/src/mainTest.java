@@ -43,19 +43,24 @@ public class mainTest {
                 
                 //line = line.replaceAll("\\(", "w");
                 //line = line.replaceAll("\\)", "o");
+                line = line.replaceAll("!", "-");
                 line = line.replaceAll("<->", "!");
-                line = line.replaceAll("->", ">");
                 
-                line = line.replaceAll("⊻", "#");
+                line = line.replaceAll("->", ">");
+                line = line.replaceAll("\\*", "∧");
+                line = line.replaceAll("\\+", "v");
+              
+                
+                line = line.replaceAll("--", ""); //elimina doble negacion
                 
                   System.out.println("Hilera " + line + " postfija: "+e.getPostFija(line));
                 Matcher acepta = patron.matcher(line);
                 
-                if(counterP(line) && acepta.matches()){
+                /*if(counterP(line) && acepta.matches()){
                     System.out.println("Hilera " + line + " aceptada");
                 }else{
                     System.out.println("Hilera " + line + " rechazada");
-                }
+                }*/
             }
             input.close();
         } catch (Exception ex) {

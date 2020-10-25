@@ -194,11 +194,6 @@ public class Expresion {
        
  
         
-        
-        
-        
-       
-        
 	else if (operadorIzquierdo == 'v' || operadorIzquierdo == '∧' && operadorDerecho == '-') {
 		return false;
 	}
@@ -213,15 +208,17 @@ public class Expresion {
     
     
     boolean esNum(char charActual){
-	switch (charActual) {
-	case 'p':
-	case 'q':
-	case 'r':
-
-		return true;
-	default:
-		return false;
-	}
+//	switch (charActual) {
+//	case 'p':
+//	case 'q':
+//	case 'r':
+//
+//		return true;
+//	default:
+//		return false;
+//	}
+    if(charActual == 'v') return false;
+        return Character.isLetter(charActual);
     }
     boolean esOperador(char charActual){
 	switch (charActual) {
