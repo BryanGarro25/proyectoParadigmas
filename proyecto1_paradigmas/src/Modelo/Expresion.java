@@ -105,14 +105,14 @@ public class Expresion {
 				stack.pop();
 			}
 			if (stack.empty()) {
-				System.out.print( "falta parentesis izquierdo");
+				System.out.print( "falta parentesis izquierdo\n");
 			}
 			// Descartar el parentesis izquierdo
 			stack.pop();
 			PosFija += " ";
 		}
 		else {
-                        System.out.print( "caracter de entrada inválido");
+                        System.out.print(String.valueOf(Actual)+  "caracter de entrada inválido \n");
 		}
 	}
 
@@ -140,26 +140,70 @@ public class Expresion {
     
     
     
-    boolean precede(char operadorIzquierdo, char operadorDerecho)
-{
-	if (operadorIzquierdo == '!') {
+    boolean precede(char operadorIzquierdo, char operadorDerecho){
+            //si izquierdo tiene mayor precedencia que derecho retorna true
+            
+     if (operadorIzquierdo == '!' && operadorDerecho == '-') {
+		return false;
+	}
+	else if (operadorDerecho == '!'&& operadorIzquierdo == '-') {
+		return true;
+	}
+
+        else if (operadorIzquierdo == '!') {
 		return true;
 	}
 	else if (operadorDerecho == '!') {
 		return false;
 	}
-        else if(operadorIzquierdo == '>' && operadorDerecho == 'v' || operadorDerecho == '∧'){
+        
+        
+        
+        else if(operadorIzquierdo == '>'){
+            if(  operadorDerecho == 'v' || operadorDerecho == '∧' ||  operadorDerecho == '#' )
             return true;
         }
-        else if(operadorDerecho == '>' && operadorIzquierdo == 'v' || operadorIzquierdo == '∧'){
+        else if(operadorDerecho == '>' ){
+            if(operadorIzquierdo == 'v' || operadorIzquierdo == '∧'|| operadorIzquierdo == '#')
             return false;
         }
-        
-	else if (operadorIzquierdo == 'v' || operadorIzquierdo == '∧') {
+         if (operadorIzquierdo == '>' && operadorDerecho == '-') {
+		return false;
+	}
+	else if (operadorDerecho == '>'&& operadorIzquierdo == '-') {
 		return true;
 	}
-	else if (operadorDerecho == 'v' || operadorDerecho == '∧') {
+        
+        
+        
+        else if (operadorIzquierdo == '#') {
+            if(  operadorDerecho == 'v' || operadorDerecho == '∧' )
+		return true;
+            
+	}
+        else if (operadorDerecho == '#') {
+            if( operadorIzquierdo == 'v' || operadorIzquierdo == '∧' )
 		return false;
+	}
+        if (operadorIzquierdo == '#' && operadorDerecho == '-') {
+           return false;
+	}
+	else if (operadorDerecho == '#'&& operadorIzquierdo == '-') {
+		return true;
+	}
+       
+ 
+        
+        
+        
+        
+       
+        
+	else if (operadorIzquierdo == 'v' || operadorIzquierdo == '∧' && operadorDerecho == '-') {
+		return false;
+	}
+	else if (operadorDerecho == 'v' || operadorDerecho == '∧' && operadorIzquierdo == '-') {
+		return true;
 	}
 
 	return true;
@@ -186,6 +230,7 @@ public class Expresion {
 	case '∧':
 	case '>':
 	case '!':
+        case '#':
 		return true;
 	default:
 		return false;
