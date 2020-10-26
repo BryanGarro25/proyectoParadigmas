@@ -7,8 +7,14 @@ package Vista;
 
 import Controller.Controller;
 import Modelo.Modelo;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -90,6 +96,11 @@ public class Vista1 extends javax.swing.JFrame implements Observer {
         opcionArchivo.add(opcionNuevo);
 
         opcionAbrir.setText("Abrir...");
+        opcionAbrir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                opcionAbrirMouseClicked(evt);
+            }
+        });
         opcionArchivo.add(opcionAbrir);
 
         opcionGuardar.setText("Guardar");
@@ -136,6 +147,25 @@ public class Vista1 extends javax.swing.JFrame implements Observer {
        Vista2 vista2 = new Vista2();
        vista2.setVisible(true);
     }//GEN-LAST:event_opcionNuevoMouseClicked
+
+    private void opcionAbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcionAbrirMouseClicked
+        ArrayList<String> expresiones = null;
+        JFileChooser file = new JFileChooser();
+       
+       FileNameExtensionFilter filtro = new FileNameExtensionFilter(".XML", "xml");
+       file.setFileFilter(filtro);
+        int seleccion = file.showOpenDialog(jPanel1);
+        
+        if(seleccion == JFileChooser.APPROVE_OPTION){
+            File fichero = file.getSelectedFile();
+            
+            expresiones = elControl.cargarXML(fichero);
+            if(expresiones != null){
+                Vista2 vista2 = new Vista2(expresiones); 
+                vista2.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_opcionAbrirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -189,7 +219,7 @@ public class Vista1 extends javax.swing.JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-         //To change body of generated methods, choose Tools | Templates.
+        
     }
 
 }

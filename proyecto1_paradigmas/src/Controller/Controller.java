@@ -7,6 +7,9 @@ package Controller;
 
 import Modelo.Modelo;
 import Vista.Vista1;
+import Vista.Vista3;
+import java.io.File;
+import java.util.ArrayList;
 
 /**
  *
@@ -24,5 +27,15 @@ public class Controller {
         laVista.setModel(elmodelo);
     }
     
+   
+    public ArrayList<String> cargarXML(File file){
+        ArrayList<String> expresiones = elmodelo.cargarXML(file);
+        
+        if(expresiones != null){
+        return expresiones;
+        }else{
+            return null;
+        }
+    }
     
 }

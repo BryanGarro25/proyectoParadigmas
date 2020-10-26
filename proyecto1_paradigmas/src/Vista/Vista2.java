@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -21,6 +22,15 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
         initComponents();
         this.setTitle("Formulas");
     }
+    
+    public Vista2(ArrayList<String> expresiones) {
+        initComponents();
+        this.setTitle("Formulas");
+        canonica.setText(expresiones.get(3));
+        textExpresion.setText(expresiones.get(0));
+        formapostfija.setText(expresiones.get(1));
+        simplificada.setText(expresiones.get(2));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,15 +41,27 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        textExpresion = new javax.swing.JTextField();
+        verificarButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        canonica = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        postfija = new javax.swing.JPanel();
+        formapostfija = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        simplificada = new javax.swing.JLabel();
+        guardarExpresion = new javax.swing.JButton();
+        expresiónCanoníca = new javax.swing.JLabel();
 
-        jButton1.setText("Verificar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        verificarButton.setText("Verificar");
+        verificarButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                verificarButtonMouseClicked(evt);
+            }
+        });
+        verificarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                verificarButtonActionPerformed(evt);
             }
         });
 
@@ -49,23 +71,73 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(canonica, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 71, Short.MAX_VALUE)
+            .addComponent(canonica, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+        );
+
+        postfija.setBorder(javax.swing.BorderFactory.createTitledBorder("Forma Postfija"));
+
+        javax.swing.GroupLayout postfijaLayout = new javax.swing.GroupLayout(postfija);
+        postfija.setLayout(postfijaLayout);
+        postfijaLayout.setHorizontalGroup(
+            postfijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(formapostfija, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        postfijaLayout.setVerticalGroup(
+            postfijaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(formapostfija, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+        );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Forma Simplificada"));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(simplificada, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(simplificada, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(postfija, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(postfija, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        guardarExpresion.setText("Guardar Expresión");
+        guardarExpresion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guardarExpresionMouseClicked(evt);
+            }
+        });
+        guardarExpresion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarExpresionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,11 +147,18 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                        .addComponent(textExpresion)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(verificarButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(387, 387, 387)
+                        .addComponent(expresiónCanoníca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(guardarExpresion))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -87,21 +166,43 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(textExpresion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(verificarButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(expresiónCanoníca, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(guardarExpresion)))
+                .addGap(60, 60, 60))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void verificarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verificarButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_verificarButtonActionPerformed
+
+    private void guardarExpresionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarExpresionMouseClicked
+        System.out.print("Se guardó");
+    }//GEN-LAST:event_guardarExpresionMouseClicked
+
+    private void guardarExpresionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarExpresionActionPerformed
+        Vista3 vista3 = new Vista3(textExpresion.getText(),formapostfija.getText(),simplificada.getText(),canonica.getText());
+        vista3.setVisible(true);
+    }//GEN-LAST:event_guardarExpresionActionPerformed
+
+    private void verificarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verificarButtonMouseClicked
+       String formula = textExpresion.getText();
+       canonica.setText(formula);
+       formapostfija.setText(formula);
+       simplificada.setText(formula);
+    }//GEN-LAST:event_verificarButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -139,13 +240,21 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel canonica;
+    private javax.swing.JLabel expresiónCanoníca;
+    private javax.swing.JLabel formapostfija;
+    private javax.swing.JButton guardarExpresion;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel postfija;
+    private javax.swing.JLabel simplificada;
+    private javax.swing.JTextField textExpresion;
+    private javax.swing.JButton verificarButton;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void update(Observable o, Object arg) {
+        
     }
 }
