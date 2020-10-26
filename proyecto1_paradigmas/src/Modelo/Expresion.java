@@ -243,16 +243,66 @@ public class Expresion {
 
 
     }
-    boolean resuelveOperador(List<Boolean> valores,char operador,String variableIzquierda, String variableDerecha){
+    boolean resuelveOperador(List<Boolean> valores,String operador,String variableIzquierda, String variableDerecha){
         //tomar en cuenta que el menos funciona distinto y hay qeu jalar ambos datos
-        boolean valorDerecha = valores.get(this.variables.indexOf(variableDerecha));
+        //operador +, izq true, der g
+        boolean valorDerecha;
+        if(variableDerecha.equals("true") || variableDerecha.equals("false")){
+            valorDerecha= Boolean.parseBoolean(variableDerecha);  
+        }else
+            valorDerecha = valores.get(this.variables.indexOf(variableDerecha));
         
-        if(operador != '-'){
-            boolean valorIzquierda = valores.get(this.variables.indexOf(variableIzquierda));
+    
+       
+        if(!operador.equals("-") ){ //caso de que haya un - como operador
+      
+            boolean valorIzquierda;
+            if(variableIzquierda.equals("true") || variableIzquierda.equals("false")){
+                valorIzquierda= Boolean.parseBoolean(variableIzquierda);  
+            }else
+                valorIzquierda = valores.get(this.variables.indexOf(variableIzquierda));
+        
+            
+            
+            
+            switch (operador) { 
+                case "+":{//V
+                    return valorIzquierda || valorDerecha;
+                }
+                case "∧":{
+                    return valorIzquierda && valorDerecha;
+                }
+                case ">":{// ->
+                    if(valorIzquierda==false && valorDerecha==false) return true;
+                    if(valorIzquierda==false && valorDerecha==true) return true;
+                    if(valorIzquierda==true && valorDerecha==false) return false;
+                    if(valorIzquierda==true && valorDerecha==true) return true;
+                }
+                case "!":{// <->
+                    if(valorIzquierda==false && valorDerecha==false) return true;
+                    if(valorIzquierda==false && valorDerecha==true) return false;
+                    if(valorIzquierda==true && valorDerecha==false) return false;
+                    if(valorIzquierda==true && valorDerecha==true) return true;
+                
+                }
+                case "#":{// or exclusivo ⊻
+                    if(valorIzquierda==false && valorDerecha==false) return false;
+                    if(valorIzquierda==false && valorDerecha==true) return true;
+                    if(valorIzquierda==true && valorDerecha==false) return true;
+                    if(valorIzquierda==true && valorDerecha==true) return false;
+                
+                }
+                        return true;
+                default:
+                        return false;
+            }
+            
+        }else{
+        //menos como oeprador, se debe tomar el valor 
+            return !valorDerecha;
         }
-        return false;
     }
-    boolean evaluar(String infija, List<Boolean> valores){
+    public boolean evaluar(String infija, List<Boolean> valores){
         //valores debe contener los valores true o false para cada variable, estos varian muchas veces y se generan aleatoreamente
         /*
             Ejemplo: 
@@ -260,27 +310,45 @@ public class Expresion {
                 lista de valores: true true false
         
                 por lo tanto se asume que a=true b=true c=false
-        
+        stack = "true"
         */
+        infija = infija.replaceAll("<->", "!");
+        infija = infija.replaceAll("->", ">");
+        infija = infija.replaceAll("\\*", "∧");
+        
         String postFija = this.getPostFija(infija);
         Stack<String> stack = new Stack<>();
         
-        for (int i = 0; i<infija.length();i++){
-            char actual = infija.charAt(i); 
+        for (int i = 0; i<postFija.length();i++){
+            
+            char actual = postFija.charAt(i); 
             
             if(esNum(actual)){
-                stack.push(String.valueOf(actual));
+                stack.push(String.valueOf(actual)); //inserta la variable 
+            }
+            else if(actual == '-'&& i+1<postFija.length() && esNum(postFija.charAt(i+1))){
+                stack.push(
+                    String.valueOf( 
+                        !valores.get(
+                                this.variables.indexOf(String.valueOf(postFija.charAt(i+1)))
+                        )//extrae el valor de la variable y lo niega
+                    ) //toma el valor de la variable negada y lo inserta al stack
+                );
+                i++;
             }
             else if(esOperador(actual)){
                 
                 String varDerecha =  stack.pop();
                 String varIzquierda = "";
-                if(actual != '-')
-                    varIzquierda =  stack.pop();
                 
-                boolean respuesta = resuelveOperador(valores,actual,varIzquierda,varDerecha);
+           
+                if(actual != '-'){   
+                    varIzquierda =  stack.pop();
+                }
+                
+                boolean respuesta = resuelveOperador(valores,String.valueOf(actual),varIzquierda,varDerecha);
                 //pasar respuesta a string y ponerla en el stack para seguir evaluando
-            
+                stack.push(String.valueOf(respuesta));
             }
         }
         return Boolean.parseBoolean(stack.pop());

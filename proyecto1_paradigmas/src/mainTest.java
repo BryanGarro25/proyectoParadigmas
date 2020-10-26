@@ -11,6 +11,8 @@
 
 import Modelo.Expresion;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.*;
 
@@ -47,13 +49,15 @@ public class mainTest {
                 line = line.replaceAll("<->", "!");
                 
                 line = line.replaceAll("->", ">");
-                line = line.replaceAll("\\*", "∧");
+                //line = line.replaceAll("\\*", "∧");
                 
               
                 
                 line = line.replaceAll("--", ""); //elimina doble negacion
-                
-                  System.out.println("Hilera " + line + " postfija: "+e.getPostFija(line));
+                List<Boolean> valores = new ArrayList<>();
+                valores.add(false);
+                 valores.add(false);
+                  System.out.println("Hilera " + line + " postfija: "+e.getPostFija(line) + " solucion: "+ e.evaluar(line,valores));
                 Matcher acepta = patron.matcher(line);
                 
                 /*if(counterP(line) && acepta.matches()){
