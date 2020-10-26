@@ -9,7 +9,10 @@
  * @author Bryan
  */
 
+import Modelo.Expresion;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.*;
 
@@ -35,16 +38,33 @@ public class mainTest {
         try {
             Scanner input = new Scanner(new File(path));
             while (input.hasNextLine()) {
+                System.out.println("\n \n");
                 String line = input.nextLine();
+                Expresion e = new Expresion(line);
+              
+                
                 //line = line.replaceAll("\\(", "w");
                 //line = line.replaceAll("\\)", "o");
+                line = line.replaceAll("!", "-");
+                line = line.replaceAll("<->", "!");
+                
+                line = line.replaceAll("->", ">");
+                //line = line.replaceAll("\\*", "∧");
+                
+              
+                
+                line = line.replaceAll("--", ""); //elimina doble negacion
+                List<Boolean> valores = new ArrayList<>();
+                valores.add(false);
+                 valores.add(false);
+                  System.out.println("Hilera " + line + " postfija: "+e.getPostFija(line) + " solucion: "+ e.evaluar(line,valores));
                 Matcher acepta = patron.matcher(line);
                 
-                if(counterP(line) && acepta.matches()){
+                /*if(counterP(line) && acepta.matches()){
                     System.out.println("Hilera " + line + " aceptada");
                 }else{
                     System.out.println("Hilera " + line + " rechazada");
-                }
+                }*/
             }
             input.close();
         } catch (Exception ex) {
@@ -55,7 +75,7 @@ public class mainTest {
     //(p^q)v(p^r)v(q^r)
     public static void main(String[] args) {
         System.out.println("******************Hileras Aceptadas******************");
-        String regex = "[-\\(-]*[pqr][v∧]-*[pqr]\\)*([∧v][-\\(-]*[pqr][v∧]-*[pqr]\\)*)*";
+        String regex = "[-\\(-]*[pqr][>!#\\+∧]-*[pqr]\\)*([>!#\\+∧][-\\(-]*[pqr][>!#\\+∧]-*[pqr]\\)*)*";
         
         reader("C:/Users/Bryan/Desktop/proyecto/ejemplo 1 (aceptar).txt",regex);//Respuesta 
         
