@@ -5,6 +5,8 @@
  */
 package Modelo;
 import static java.lang.Character.isSpace;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 /**
  *
@@ -14,7 +16,7 @@ public class Expresion {
     private String expresion;
     private String canonica;
     private String resultado;
-
+    private List<String> variables;
     public Expresion() {
     }
 
@@ -22,12 +24,14 @@ public class Expresion {
         this.expresion = expresion;
         this.canonica = canonica;
         this.resultado = resultado;
+        variables = new ArrayList<>();
     }
     
     public Expresion(String expresion) {
         this.expresion = expresion;
         this.canonica = "";
         this.resultado = "";
+        variables = new ArrayList<>();
     }
 
     public String getExpresion() {
@@ -160,11 +164,11 @@ public class Expresion {
         
         
         else if(operadorIzquierdo == '>'){
-            if(  operadorDerecho == 'v' || operadorDerecho == '∧' ||  operadorDerecho == '#' )
+            if(  operadorDerecho == '+' || operadorDerecho == '∧' ||  operadorDerecho == '#' )
             return true;
         }
         else if(operadorDerecho == '>' ){
-            if(operadorIzquierdo == 'v' || operadorIzquierdo == '∧'|| operadorIzquierdo == '#')
+            if(operadorIzquierdo == '+' || operadorIzquierdo == '∧'|| operadorIzquierdo == '#')
             return false;
         }
          if (operadorIzquierdo == '>' && operadorDerecho == '-') {
@@ -177,12 +181,12 @@ public class Expresion {
         
         
         else if (operadorIzquierdo == '#') {
-            if(  operadorDerecho == 'v' || operadorDerecho == '∧' )
+            if(  operadorDerecho == '+' || operadorDerecho == '∧' )
 		return true;
             
 	}
         else if (operadorDerecho == '#') {
-            if( operadorIzquierdo == 'v' || operadorIzquierdo == '∧' )
+            if( operadorIzquierdo == '+' || operadorIzquierdo == '∧' )
 		return false;
 	}
         if (operadorIzquierdo == '#' && operadorDerecho == '-') {
@@ -194,10 +198,10 @@ public class Expresion {
        
  
         
-	else if (operadorIzquierdo == 'v' || operadorIzquierdo == '∧' && operadorDerecho == '-') {
+	else if (operadorIzquierdo == '+' || operadorIzquierdo == '∧' && operadorDerecho == '-') {
 		return false;
 	}
-	else if (operadorDerecho == 'v' || operadorDerecho == '∧' && operadorIzquierdo == '-') {
+	else if (operadorDerecho == '+' || operadorDerecho == '∧' && operadorIzquierdo == '-') {
 		return true;
 	}
 
@@ -208,21 +212,18 @@ public class Expresion {
     
     
     boolean esNum(char charActual){
-//	switch (charActual) {
-//	case 'p':
-//	case 'q':
-//	case 'r':
-//
-//		return true;
-//	default:
-//		return false;
-//	}
-    if(charActual == 'v') return false;
-        return Character.isLetter(charActual);
+        if (Character.isLetter(charActual)){
+            
+            if (!this.variables.contains(String.valueOf(charActual)))
+                this.variables.add(String.valueOf(charActual));
+            
+            return true;
+        }
+        return false;
     }
     boolean esOperador(char charActual){
 	switch (charActual) {
-	case 'v':
+	case '+':
 	case '-':
 	case '∧':
 	case '>':
@@ -236,10 +237,52 @@ public class Expresion {
     boolean esSigno(int i, String Infija) {
         //-(p∧r) i = 0
 	int posAnt;
-	if ( esNum(Infija.charAt(i+1)))
+	if ( esNum(Infija.charAt(i+1)) || Infija.charAt(i+1)=='-')
 		return true;
 	else { return false;}
 
 
+    }
+    boolean resuelveOperador(List<Boolean> valores,char operador,String variableIzquierda, String variableDerecha){
+        //tomar en cuenta que el menos funciona distinto y hay qeu jalar ambos datos
+        boolean valorDerecha = valores.get(this.variables.indexOf(variableDerecha));
+        
+        if(operador != '-'){
+            boolean valorIzquierda = valores.get(this.variables.indexOf(variableIzquierda));
+        }
+        return false;
+    }
+    boolean evaluar(String infija, List<Boolean> valores){
+        //valores debe contener los valores true o false para cada variable, estos varian muchas veces y se generan aleatoreamente
+        /*
+            Ejemplo: 
+                lista de variables: a b c
+                lista de valores: true true false
+        
+                por lo tanto se asume que a=true b=true c=false
+        
+        */
+        String postFija = this.getPostFija(infija);
+        Stack<String> stack = new Stack<>();
+        
+        for (int i = 0; i<infija.length();i++){
+            char actual = infija.charAt(i); 
+            
+            if(esNum(actual)){
+                stack.push(String.valueOf(actual));
+            }
+            else if(esOperador(actual)){
+                
+                String varDerecha =  stack.pop();
+                String varIzquierda = "";
+                if(actual != '-')
+                    varIzquierda =  stack.pop();
+                
+                boolean respuesta = resuelveOperador(valores,actual,varIzquierda,varDerecha);
+                //pasar respuesta a string y ponerla en el stack para seguir evaluando
+            
+            }
+        }
+        return Boolean.parseBoolean(stack.pop());
     }
 }
