@@ -27,16 +27,18 @@ public class Vista1 extends javax.swing.JFrame implements Observer {
     private Modelo elModelo;
 
     
-    
+    //Constructor de la vista
     public Vista1() {
         initComponents();
         this.setTitle("Editor de Formulas");
     }
 
-    
+    //Set del controlador
     public void setController(Controller control){
         this.elControl=control;
     }
+    
+    //Set del modelo
     public void setModel(Modelo elModelo){
         this.elModelo=elModelo;
         this.elModelo.addObserver(this);
@@ -151,6 +153,7 @@ public class Vista1 extends javax.swing.JFrame implements Observer {
        vista2.setVisible(true);
     }//GEN-LAST:event_opcionNuevoMouseClicked
 
+    //Metodo para seleccionar el documento XML a cargar
     private void opcionAbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcionAbrirMouseClicked
         ArrayList<String> expresiones = null;
         JFileChooser file = new JFileChooser();

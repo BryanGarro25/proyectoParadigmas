@@ -15,10 +15,13 @@ import java.util.ArrayList;
  *
  * @author Lencho-PC
  */
+
+//Control de la vista1
 public class Controller {
     private Modelo elmodelo;
     private Vista1 laVista;
 
+    //Constructor
     public Controller(Modelo elmodelo, Vista1 laVista) {
         this.elmodelo = elmodelo;
         this.laVista = laVista;
@@ -27,6 +30,7 @@ public class Controller {
         laVista.setModel(elmodelo);
     }
    
+    //Carga del archivo XML
     public ArrayList<String> cargarXML(File file){
         ArrayList<String> expresiones = elmodelo.cargarXML(file);
         

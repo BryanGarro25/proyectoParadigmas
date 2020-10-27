@@ -19,7 +19,7 @@ import java.util.regex.*;
 public class mainTest {
     
     
-    
+    //Contador
     public static boolean counterP(String line){
         int counterA = 0;
         int counterC = 0;
@@ -32,6 +32,8 @@ public class mainTest {
         }
         return counterA==counterC;
     }
+    
+    //La funcion que capta la expresion regular
     public static void reader(String path,String regex){ 
         Pattern patron = Pattern.compile(regex);
         boolean bandera = true;
