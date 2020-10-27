@@ -42,4 +42,8 @@ public class Controller2 {
         elmodelo.getLaExpresion().setCanonicas();
         elmodelo.commit();
     }
+    
+    public boolean expCorrecta(String f){
+        return elmodelo.expresionValida(f);
+    }
 }

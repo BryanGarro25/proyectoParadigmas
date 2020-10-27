@@ -78,7 +78,8 @@ public class mainTest {
     //(p^q)v(p^r)v(q^r)
     public static void main(String[] args) {
         System.out.println("******************Hileras Aceptadas******************");
-        String regex = "[-\\(-]*[pqr][>!#\\+∧]-*[pqr]\\)*([>!#\\+∧][-\\(-]*[pqr][>!#\\+∧]-*[pqr]\\)*)*";
+        //String regex = "[-\\(-]*[pqr][>!#\\+∧]-*[pqr]\\)*([>!#\\+∧][-\\(-]*[pqr][>!#\\+∧]-*[pqr]\\)*)*";
+        String regex = "[-\\(-]*[pqr]([>!#\\+∧][-\\(]*-*[pqr]([>!#\\+∧][-\\(]*-*[pqr]\\)*)*)+\\)*([>!#\\+∧][-\\(-]*[pqr][>!#\\+∧]-*[pqr]\\)*)*";
         
         reader("C:/Users/Bryan/Desktop/proyecto/ejemplo 1 (aceptar).txt",regex);//Respuesta 
         
