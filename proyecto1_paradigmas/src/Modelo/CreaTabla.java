@@ -32,6 +32,12 @@ public class CreaTabla {
         table.addColumn(formula);
         vista.getTablaVerdad().setModel(table);
     }
+    public String completarCeros (String binario,int tam){
+        while(binario.length()!=tam)
+            binario = "0"+binario;
+    
+        return binario;
+    }
     
     public void generarFilas(Vista2 vista, String f){
         exp = new Expresion(f);
@@ -39,35 +45,34 @@ public class CreaTabla {
         DefaultTableModel table = (DefaultTableModel) vista.getTablaVerdad().getModel();
         Object filas[];
         ArrayList<Boolean> valores = new ArrayList();
-        int maximo = (int) Math.pow(2, exp.getVariables().size());
-        int tam = exp.getVariables().size();
+        int maximo = (int) Math.pow(2, exp.getVariables().size()); //maximo es la cantidad de numeros binarios
+        int tam = exp.getVariables().size(); //cantidad de variables
         String binario;
         int ceros;
         
-        for(int i = 0; i < maximo; i++ ){
+        for(int i = 0; i < maximo; i++ ){ //cuenta en binario hasta 4
             filas = new Object[tam + 1];
             binario = Integer.toString(i,2);
             ceros = tam - binario.length();
             
-            for(int j = 0; j < ceros; j++){
-                filas[j] = "F";
-                System.out.println(filas[j]);
-            }
+            binario = this.completarCeros(binario,tam);
             
-            for(int n = tam - 1, m = binario.length()-1; m >= 0; m--,n--){
-                if(binario.charAt(m) == '1'){
-                    filas[n] = "V";
+            for(int x=0;x<binario.length();x++){
+                if(binario.charAt(x) == '1'){
+                    filas[x] = "V";
                     valores.add(true);
-                    System.out.println(filas[n]);
+                    System.out.println(filas[x]);
                 }else{
-                    filas[n] = "F";
+                    filas[x] = "F";
                     valores.add(false);
-                    System.out.println(filas[n]);
+                    System.out.println(filas[x]);
                 }
             }
             filas[tam] = exp.evaluar(f,valores);
             table.addRow(filas);
+              valores = new ArrayList();
         }
         vista.getTablaVerdad().setModel(table);
+        
     }
 }

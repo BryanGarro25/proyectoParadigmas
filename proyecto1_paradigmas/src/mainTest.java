@@ -54,9 +54,10 @@ public class mainTest {
               
                 
                 line = line.replaceAll("--", ""); //elimina doble negacion
-                List<Boolean> valores = new ArrayList<>();
+                ArrayList<Boolean> valores = new ArrayList<>();
                 valores.add(false);
                  valores.add(false);
+                  valores.add(false);
                   System.out.println("Hilera " + line + " postfija: "+e.getPostFija(line) + " solucion: "+ e.evaluar(line,valores));
                 Matcher acepta = patron.matcher(line);
                 
