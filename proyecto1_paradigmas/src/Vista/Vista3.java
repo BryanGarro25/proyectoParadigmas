@@ -17,7 +17,8 @@ import java.util.Observer;
  */
 public class Vista3 extends javax.swing.JFrame implements Observer {
     
-   Controller3 controller;
+   private Controller3 controller;
+   private Modelo elModelo;
     
     String formula;
     String postfija;
@@ -40,6 +41,14 @@ public class Vista3 extends javax.swing.JFrame implements Observer {
         this.postfija = postfija;
         this.simplificada = simplificada;
         controller = new Controller3();
+    }
+    
+    public void setController(Controller3 control){
+        this.controller=control;
+    }
+    public void setModel(Modelo elModelo){
+        this.elModelo=elModelo;
+        elModelo.addObserver(this);
     }
     
     /**
@@ -119,6 +128,8 @@ public class Vista3 extends javax.swing.JFrame implements Observer {
 
     private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
         controller.crearXML(nombrefile.getText(), formula, postfija, simplificada, canonica);
+        this.setVisible(false);
+        this.dispose(); 
     }//GEN-LAST:event_guardarButtonActionPerformed
 
     /**

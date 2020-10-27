@@ -58,6 +58,10 @@ public class Expresion {
         this.resultado = resultado;
     }
 
+    public List<String> getVariables() {
+        return variables;
+    }
+
     @Override
     public String toString() {
         return "Expresion{" + "expresion=" + expresion + ", canonica=" + canonica + ", resultado=" + resultado + '}';

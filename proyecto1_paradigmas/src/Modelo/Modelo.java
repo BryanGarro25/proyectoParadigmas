@@ -5,7 +5,6 @@
  */
 package Modelo;
 
-import Vista.Vista1;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Observer;
@@ -148,6 +147,10 @@ public class Modelo extends java.util.Observable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public String getPostFija(String ex){
+        return laExpresion.getPostFija(ex);
     }
     
     /**

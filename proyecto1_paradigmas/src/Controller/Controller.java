@@ -26,7 +26,6 @@ public class Controller {
         laVista.setController(this);
         laVista.setModel(elmodelo);
     }
-    
    
     public ArrayList<String> cargarXML(File file){
         ArrayList<String> expresiones = elmodelo.cargarXML(file);
