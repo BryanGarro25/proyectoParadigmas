@@ -22,19 +22,19 @@ public class Controller2 {
     public Controller2(Modelo elmodelo, Vista2 laVista) {
         this.elmodelo = elmodelo;
         this.laVista = laVista;
-        
+        laTabla = new CreaTabla();
         laVista.setController(this);
         laVista.setModel(elmodelo);
         
-        laTabla = new CreaTabla();
+        
     }
     
     public String getPostfija(String m){
         return elmodelo.getPostFija(m);
     }
     
-    public void llenarTabla(List<String> v, String formula,String resultado){
-        laTabla.generarColumnas(laVista, v, formula);
-        laTabla.generarFilas(laVista, formula, v, resultado);
+    public void llenarTabla(Vista2 v,String formula){
+        laTabla.generarColumnas(v,formula);
+        laTabla.generarFilas(v,formula);
     }
 }

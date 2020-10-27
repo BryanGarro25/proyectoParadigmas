@@ -34,7 +34,7 @@ public class Vista3 extends javax.swing.JFrame implements Observer {
         initComponents();
     }
 
-    public Vista3(String formula, String postfija, String simplificada,String canonica) {
+    public Vista3(String formula, String simplificada,String canonica) {
         initComponents();
         this.canonica = canonica;
         this.formula = formula;
@@ -127,7 +127,7 @@ public class Vista3 extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_guardarButtonMouseClicked
 
     private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
-        controller.crearXML(nombrefile.getText(), formula, postfija, simplificada, canonica);
+        controller.crearXML(nombrefile.getText(), formula, simplificada, canonica);
         this.setVisible(false);
         this.dispose(); 
     }//GEN-LAST:event_guardarButtonActionPerformed

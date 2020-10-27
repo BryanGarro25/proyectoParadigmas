@@ -45,14 +45,13 @@ public class Controller3 {
         return node;
     }
     
-    private static Node createUserElement(Document doc, String formula, String postfija, String simplificada,String canonica) {
+    private static Node createUserElement(Document doc, String formula, String simplificada,String canonica) {
         Element expresion = doc.createElement("expresion");
 
         // set formula attribute
         expresion.appendChild(createUserElements(doc, expresion, "formula", formula));
 
-        // create postfija element
-        expresion.appendChild(createUserElements(doc, expresion, "postfija", postfija));
+        
 
         // create inversa element
         expresion.appendChild(createUserElements(doc, expresion, "simplificada", simplificada));
@@ -64,7 +63,7 @@ public class Controller3 {
         return expresion;
     }
     
-    public void crearXML(String nombreArch, String formula, String postfija, String simplificada,String canonica){
+    public void crearXML(String nombreArch, String formula, String simplificada,String canonica){
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder;
         try {
@@ -76,7 +75,7 @@ public class Controller3 {
             doc.appendChild(rootElement);
 
             // append first child element to root element
-            rootElement.appendChild(createUserElement(doc, formula, postfija, simplificada, canonica));
+            rootElement.appendChild(createUserElement(doc, formula, simplificada, canonica));
 
             // for output to file, console
             TransformerFactory transformerFactory = TransformerFactory.newInstance();

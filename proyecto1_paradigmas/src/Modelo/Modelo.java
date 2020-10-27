@@ -73,12 +73,10 @@ public class Modelo extends java.util.Observable {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) node;
                     System.out.println("Expresion: " + eElement.getElementsByTagName("formula").item(0).getTextContent());
-                    System.out.println("Forma postfija: " + eElement.getElementsByTagName("postfija").item(0).getTextContent());
                     System.out.println("Forma Simplificada: " + eElement.getElementsByTagName("simplificada").item(0).getTextContent());
                     System.out.println("Forma canónica: " + eElement.getElementsByTagName("canonica").item(0).getTextContent());
                     
                     expresiones.add(eElement.getElementsByTagName("formula").item(0).getTextContent());
-                    expresiones.add(eElement.getElementsByTagName("postfija").item(0).getTextContent());
                     expresiones.add(eElement.getElementsByTagName("simplificada").item(0).getTextContent());
                     expresiones.add(eElement.getElementsByTagName("canonica").item(0).getTextContent());
                 }
@@ -96,14 +94,12 @@ public class Modelo extends java.util.Observable {
         return node;
     }
     
-    private static Node createUserElement(Document doc, String formula, String postfija, String simplificada,String canonica) {
+    private static Node createUserElement(Document doc, String formula, String simplificada,String canonica) {
         Element expresion = doc.createElement("expresion");
 
         // set formula attribute
         expresion.setAttribute("formula", formula);
 
-        // create postfija element
-        expresion.appendChild(createUserElements(doc, expresion, "postfija", postfija));
 
         // create inversa element
         expresion.appendChild(createUserElements(doc, expresion, "simplificada", simplificada));
@@ -127,7 +123,7 @@ public class Modelo extends java.util.Observable {
             doc.appendChild(rootElement);
 
             // append first child element to root element
-            rootElement.appendChild(createUserElement(doc, formula, postfija, simplificada, canonica));
+            rootElement.appendChild(createUserElement(doc, formula, simplificada, canonica));
 
             // for output to file, console
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
