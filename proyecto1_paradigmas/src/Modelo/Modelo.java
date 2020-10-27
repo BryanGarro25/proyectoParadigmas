@@ -74,11 +74,13 @@ public class Modelo extends java.util.Observable {
                     Element eElement = (Element) node;
                     System.out.println("Expresion: " + eElement.getElementsByTagName("formula").item(0).getTextContent());
                     System.out.println("Forma Simplificada: " + eElement.getElementsByTagName("simplificada").item(0).getTextContent());
-                    System.out.println("Forma canónica: " + eElement.getElementsByTagName("canonica").item(0).getTextContent());
+                    System.out.println("Forma canónica: " + eElement.getElementsByTagName("fndcanonica").item(0).getTextContent());
+                    System.out.println("Forma canónica: " + eElement.getElementsByTagName("fnccanonica").item(0).getTextContent());
                     
                     expresiones.add(eElement.getElementsByTagName("formula").item(0).getTextContent());
                     expresiones.add(eElement.getElementsByTagName("simplificada").item(0).getTextContent());
-                    expresiones.add(eElement.getElementsByTagName("canonica").item(0).getTextContent());
+                    expresiones.add(eElement.getElementsByTagName("fndcanonica").item(0).getTextContent());
+                    expresiones.add(eElement.getElementsByTagName("fnccanonica").item(0).getTextContent());
                 }
             } 
         }catch (Exception e)   {  
@@ -94,7 +96,7 @@ public class Modelo extends java.util.Observable {
         return node;
     }
     
-    private static Node createUserElement(Document doc, String formula, String simplificada,String canonica) {
+    private static Node createUserElement(Document doc, String formula, String simplificada,String fndcanonica,String fnccanonica) {
         Element expresion = doc.createElement("expresion");
 
         // set formula attribute
@@ -105,13 +107,14 @@ public class Modelo extends java.util.Observable {
         expresion.appendChild(createUserElements(doc, expresion, "simplificada", simplificada));
 
         // create canonica element
-        expresion.appendChild(createUserElements(doc, expresion, "canonica", canonica));
+        expresion.appendChild(createUserElements(doc, expresion, "fndcanonica", fndcanonica));
 
-
+        
+        expresion.appendChild(createUserElements(doc, expresion, "fnccanonica", fnccanonica));
         return expresion;
     }
     
-    public void crearXML(String nombreArch, String formula, String postfija, String simplificada,String canonica){
+    public void crearXML(String nombreArch, String formula, String postfija, String simplificada,String fndcanonica,String fnccanonica){
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder;
         try {
@@ -123,7 +126,7 @@ public class Modelo extends java.util.Observable {
             doc.appendChild(rootElement);
 
             // append first child element to root element
-            rootElement.appendChild(createUserElement(doc, formula, simplificada, canonica));
+            rootElement.appendChild(createUserElement(doc, formula, simplificada, fndcanonica,fnccanonica));
 
             // for output to file, console
             TransformerFactory transformerFactory = TransformerFactory.newInstance();

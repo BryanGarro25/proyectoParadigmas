@@ -42,9 +42,13 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
     public Vista2(ArrayList<String> expresiones) {
         initComponents();
         this.setTitle("Formulas");
-        canonica.setText(expresiones.get(3));
         textExpresion.setText(expresiones.get(0));
-        simplificada.setText(expresiones.get(2));
+        simplificada.setText(expresiones.get(1));
+        fndCanonica.setText(expresiones.get(2));
+        fnccanonica.setText(expresiones.get(3));
+//        fndCanonica.setText(expresiones.get(3));
+//        textExpresion.setText(expresiones.get(0));
+//        simplificada.setText(expresiones.get(2));
     }
 
     /**
@@ -65,7 +69,10 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaVerdad = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        canonica = new javax.swing.JLabel();
+        fndCanonica = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        fnccanonica = new javax.swing.JLabel();
         guardarExpresion = new javax.swing.JButton();
         expresiónCanoníca = new javax.swing.JLabel();
 
@@ -127,18 +134,40 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Forma Canoníca"));
 
+        jLabel1.setText("FND:");
+
+        jLabel2.setText("FNC:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(canonica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fnccanonica, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fndCanonica, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(canonica, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(fndCanonica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(fnccanonica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         guardarExpresion.setText("Guardar Expresión");
@@ -160,13 +189,13 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(guardarExpresion)))
                 .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,11 +204,11 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(119, 119, 119)
+                .addGap(43, 43, 43)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(guardarExpresion)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -209,7 +238,7 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(expresiónCanoníca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(expresiónCanoníca, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE))
         );
 
         pack();
@@ -224,7 +253,7 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_guardarExpresionMouseClicked
 
     private void guardarExpresionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarExpresionActionPerformed
-        Vista3 vista3 = new Vista3(textExpresion.getText(),simplificada.getText(),canonica.getText());
+        Vista3 vista3 = new Vista3(textExpresion.getText(),simplificada.getText(),fndCanonica.getText());
         Modelo domainModel = new Modelo(textExpresion.getText());
         Controller3 logincontroller = new Controller3(domainModel,vista3);
         vista3.setVisible(true);
@@ -286,9 +315,12 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel canonica;
     private javax.swing.JLabel expresiónCanoníca;
+    private javax.swing.JLabel fnccanonica;
+    private javax.swing.JLabel fndCanonica;
     private javax.swing.JButton guardarExpresion;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

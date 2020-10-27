@@ -165,7 +165,7 @@ public class Vista1 extends javax.swing.JFrame implements Observer {
             expresiones = elControl.cargarXML(fichero);
             if(expresiones != null){
              
-                if(expresiones.size() > 3){
+                if(expresiones.size() > 4){
                     ArrayList<String> aux;
                     int i = 0;
                     while(i < expresiones.size()){
@@ -173,9 +173,10 @@ public class Vista1 extends javax.swing.JFrame implements Observer {
                         aux.add(expresiones.get(i));
                         aux.add(expresiones.get(i+1));
                         aux.add(expresiones.get(i+2));
+                        aux.add(expresiones.get(i+3));
                         Vista2 vista2 = new Vista2(expresiones); 
                         vista2.setVisible(true);
-                        i= i+3;
+                        i= i+4;
                     }
                 }else{
                     Vista2 vista2 = new Vista2(expresiones); 
