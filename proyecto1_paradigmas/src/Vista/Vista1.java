@@ -6,9 +6,16 @@
 package Vista;
 
 import Controller.Controller;
+import Controller.Controller2;
 import Modelo.Modelo;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -46,16 +53,16 @@ public class Vista1 extends javax.swing.JFrame implements Observer {
 
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu10 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
-        jMenu8 = new javax.swing.JMenu();
-        jMenu9 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
+        opcionEdicion = new javax.swing.JMenu();
+        opcionArchivo = new javax.swing.JMenu();
+        opcionNuevo = new javax.swing.JMenu();
+        opcionAbrir = new javax.swing.JMenu();
+        opcionGuardar = new javax.swing.JMenu();
+        opcionSalir = new javax.swing.JMenu();
+        opcionVista = new javax.swing.JMenu();
+        herramientas = new javax.swing.JMenu();
+        ventanas = new javax.swing.JMenu();
+        ayuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,40 +74,55 @@ public class Vista1 extends javax.swing.JFrame implements Observer {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 352, Short.MAX_VALUE)
+            .addGap(0, 354, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Archivo");
-        jMenu1.setToolTipText("");
+        opcionEdicion.setText("Edición");
+        jMenuBar1.add(opcionEdicion);
 
-        jMenu10.setText("Nuevo ");
-        jMenu1.add(jMenu10);
+        opcionArchivo.setText("Archivo");
+        opcionArchivo.setToolTipText("");
 
-        jMenu7.setText("Abrir...");
-        jMenu1.add(jMenu7);
+        opcionNuevo.setText("Nuevo ");
+        opcionNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                opcionNuevoMouseClicked(evt);
+            }
+        });
+        opcionNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcionNuevoActionPerformed(evt);
+            }
+        });
+        opcionArchivo.add(opcionNuevo);
 
-        jMenu8.setText("Guardar");
-        jMenu1.add(jMenu8);
+        opcionAbrir.setText("Abrir...");
+        opcionAbrir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                opcionAbrirMouseClicked(evt);
+            }
+        });
+        opcionArchivo.add(opcionAbrir);
 
-        jMenu9.setText("Salir");
-        jMenu1.add(jMenu9);
+        opcionGuardar.setText("Guardar");
+        opcionArchivo.add(opcionGuardar);
 
-        jMenuBar1.add(jMenu1);
+        opcionSalir.setText("Salir");
+        opcionArchivo.add(opcionSalir);
 
-        jMenu2.setText("Edición");
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(opcionArchivo);
 
-        jMenu3.setText("Vista");
-        jMenuBar1.add(jMenu3);
+        opcionVista.setText("Vista");
+        jMenuBar1.add(opcionVista);
 
-        jMenu4.setText("Herramientas");
-        jMenuBar1.add(jMenu4);
+        herramientas.setText("Herramientas");
+        jMenuBar1.add(herramientas);
 
-        jMenu5.setText("Ventanas");
-        jMenuBar1.add(jMenu5);
+        ventanas.setText("Ventanas");
+        jMenuBar1.add(ventanas);
 
-        jMenu6.setText("Ayuda");
-        jMenuBar1.add(jMenu6);
+        ayuda.setText("Ayuda");
+        jMenuBar1.add(ayuda);
 
         setJMenuBar(jMenuBar1);
 
@@ -117,6 +139,36 @@ public class Vista1 extends javax.swing.JFrame implements Observer {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void opcionNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionNuevoActionPerformed
+     
+    }//GEN-LAST:event_opcionNuevoActionPerformed
+
+    private void opcionNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcionNuevoMouseClicked
+       Vista2 vista2 = new Vista2();
+       Modelo domainModel = new Modelo();
+       Controller2 logincontroller = new Controller2(domainModel,vista2);
+       vista2.setVisible(true);
+    }//GEN-LAST:event_opcionNuevoMouseClicked
+
+    private void opcionAbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcionAbrirMouseClicked
+        ArrayList<String> expresiones = null;
+        JFileChooser file = new JFileChooser();
+       
+       FileNameExtensionFilter filtro = new FileNameExtensionFilter(".XML", "xml");
+       file.setFileFilter(filtro);
+        int seleccion = file.showOpenDialog(jPanel1);
+        
+        if(seleccion == JFileChooser.APPROVE_OPTION){
+            File fichero = file.getSelectedFile();
+            
+            expresiones = elControl.cargarXML(fichero);
+            if(expresiones != null){
+                Vista2 vista2 = new Vista2(expresiones); 
+                vista2.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_opcionAbrirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -154,23 +206,23 @@ public class Vista1 extends javax.swing.JFrame implements Observer {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu10;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
+    private javax.swing.JMenu ayuda;
+    private javax.swing.JMenu herramientas;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenu opcionAbrir;
+    private javax.swing.JMenu opcionArchivo;
+    private javax.swing.JMenu opcionEdicion;
+    private javax.swing.JMenu opcionGuardar;
+    private javax.swing.JMenu opcionNuevo;
+    private javax.swing.JMenu opcionSalir;
+    private javax.swing.JMenu opcionVista;
+    private javax.swing.JMenu ventanas;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void update(Observable o, Object arg) {
-         //To change body of generated methods, choose Tools | Templates.
+        
     }
 
 }

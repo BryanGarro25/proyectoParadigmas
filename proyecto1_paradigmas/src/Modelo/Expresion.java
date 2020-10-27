@@ -17,6 +17,7 @@ public class Expresion {
     private String canonica;
     private String resultado;
     private List<String> variables;
+    
     public Expresion() {
     }
 
@@ -56,6 +57,10 @@ public class Expresion {
 
     public void setResultado(String resultado) {
         this.resultado = resultado;
+    }
+
+    public List<String> getVariables() {
+        return variables;
     }
 
     @Override
@@ -243,7 +248,7 @@ public class Expresion {
 
 
     }
-    boolean resuelveOperador(List<Boolean> valores,String operador,String variableIzquierda, String variableDerecha){
+    boolean resuelveOperador(ArrayList<Boolean> valores,String operador,String variableIzquierda, String variableDerecha){
         //tomar en cuenta que el menos funciona distinto y hay qeu jalar ambos datos
         //operador +, izq true, der g
         boolean valorDerecha;
@@ -302,7 +307,7 @@ public class Expresion {
             return !valorDerecha;
         }
     }
-    public boolean evaluar(String infija, List<Boolean> valores){
+    public boolean evaluar(String infija, ArrayList<Boolean> valores){
         //valores debe contener los valores true o false para cada variable, estos varian muchas veces y se generan aleatoreamente
         /*
             Ejemplo: 
