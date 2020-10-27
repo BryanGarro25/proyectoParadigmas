@@ -30,8 +30,8 @@ public class Modelo extends java.util.Observable {
     private Expresion laExpresion;
     private Evaluador elEvaluador;
 
-    public Modelo() {
-        this.laExpresion = new Expresion();
+    public Modelo(String expresion) {
+        this.laExpresion = new Expresion(expresion);
         this.elEvaluador = new Evaluador();
     }
 

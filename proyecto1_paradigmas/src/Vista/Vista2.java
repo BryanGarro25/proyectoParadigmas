@@ -224,7 +224,7 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
 
     private void guardarExpresionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarExpresionActionPerformed
         Vista3 vista3 = new Vista3(textExpresion.getText(),simplificada.getText(),canonica.getText());
-        Modelo domainModel = new Modelo();
+        Modelo domainModel = new Modelo(textExpresion.getText());
         Controller3 logincontroller = new Controller3(domainModel,vista3);
         vista3.setVisible(true);
     }//GEN-LAST:event_guardarExpresionActionPerformed
@@ -295,6 +295,7 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        this.tablaVerdad.setModel(elModelo.getLaExpresion().getTable());
         this.addNotify();
     }
 }

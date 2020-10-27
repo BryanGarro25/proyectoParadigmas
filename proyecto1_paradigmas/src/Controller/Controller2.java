@@ -17,12 +17,11 @@ import java.util.List;
 public class Controller2 {
     private Modelo elmodelo;
     private Vista2 laVista;
-    private CreaTabla laTabla;
+   
 
     public Controller2(Modelo elmodelo, Vista2 laVista) {
         this.elmodelo = elmodelo;
         this.laVista = laVista;
-        laTabla = new CreaTabla();
         laVista.setController(this);
         laVista.setModel(elmodelo);
         
@@ -34,7 +33,8 @@ public class Controller2 {
     }
     
     public void llenarTabla(Vista2 v,String formula){
-        laTabla.generarColumnas(v,formula);
-        laTabla.generarFilas(v,formula);
+        elmodelo.getLaExpresion().generarColumnas(v,formula);
+        elmodelo.getLaExpresion().generarFilas(v,formula);
+        elmodelo.commit();
     }
 }

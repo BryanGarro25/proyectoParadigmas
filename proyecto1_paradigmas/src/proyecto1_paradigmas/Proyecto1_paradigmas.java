@@ -21,7 +21,7 @@ public class Proyecto1_paradigmas {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.print("hola");
-        Modelo domainModel = new Modelo();
+        Modelo domainModel = new Modelo("");
        
         Vista1 loginView= new Vista1();
         Controller logincontroller = new Controller(domainModel,loginView);
