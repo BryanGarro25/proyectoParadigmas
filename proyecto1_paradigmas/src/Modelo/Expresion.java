@@ -70,6 +70,7 @@ public class Expresion {
     }
 
     public String getCanonicaH() {
+        //s.substring(0, s.length() - 1);
         return canonicaC;
     }
 
@@ -454,31 +455,35 @@ public class Expresion {
                     }
                     if(actual.equals("V")){
                         D+=variable_Actual;
+                        
                     }
                     else if(actual.equals("F")){
                         D+="-"+variable_Actual;
+                        
                     }
                 }else if(resultado_de_row.equals("false")){
                     if(C.length()>=2){//aqui se arma la conjuntiva
                         C+="v";
+                       
                     }
                     if(actual.equals("V")){
-                        D+="-"+variable_Actual;
+                        C+="-"+variable_Actual;
                     }
                     else if(actual.equals("F")){
-                        D+=variable_Actual;
+                        C+=variable_Actual;
                     }
                 }
             }//second for
             if(D.equals("(")){
                 C+=")";
                 this.canonicaC += C + "∧";
+                
             }else{
                 D+=")";
                 this.canonicaD += D + "v";
             }
             
-        }//first for
+        }//first for j
     
     }
 }

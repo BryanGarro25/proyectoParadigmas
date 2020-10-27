@@ -104,6 +104,7 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabla de Verdad"));
+        jPanel3.setAutoscrolls(true);
 
         tablaVerdad.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -145,15 +146,15 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fnccanonica, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fndCanonica, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fndCanonica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(52, 52, 52))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -332,13 +333,20 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton verificarButton;
     // End of variables declaration//GEN-END:variables
 
+    private String quitarUltimo(String m){
+        String mm = "";
+        for(int i = 0; i < m.length()-1; i++){
+           
+        }
+        return mm;
+    }
     @Override
     public void update(Observable o, Object arg) {
+        String fnd = elModelo.getLaExpresion().getCanonicaD();
+        String fnc = elModelo.getLaExpresion().getCanonicaH();
         this.tablaVerdad.setModel(elModelo.getLaExpresion().getTable());
-        this.canonica.setText("Canonica Disyuntiva:" + elModelo.getLaExpresion().getCanonicaD()+"\n"+
-        "Canonica Conjuntiva:" + elModelo.getLaExpresion().getCanonicaH()+"\n"
-        
-                             );
+        this.fndCanonica.setText(fnd);
+        this.fnccanonica.setText(fnc);
         this.addNotify();
     }
 }
