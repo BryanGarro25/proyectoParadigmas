@@ -334,9 +334,9 @@ public class Expresion {
                 }
                 case "#":{// or exclusivo ⊻
                     if(valorIzquierda==false && valorDerecha==false) return false;
-                    if(valorIzquierda==false && valorDerecha==true) return true;
-                    if(valorIzquierda==true && valorDerecha==false) return true;
-                    if(valorIzquierda==true && valorDerecha==true) return false;
+                    if(valorIzquierda==false && valorDerecha==true) return false;
+                    if(valorIzquierda==true && valorDerecha==false) return false;
+                    if(valorIzquierda==true && valorDerecha==true) return true;
                 
                 }
                         return true;
