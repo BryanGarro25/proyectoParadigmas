@@ -30,27 +30,34 @@ public class Modelo extends java.util.Observable {
     private Expresion laExpresion;
     private Evaluador elEvaluador;
 
+    //Constructor del modelo
     public Modelo(String expresion) {
         this.laExpresion = new Expresion(expresion);
         this.elEvaluador = new Evaluador();
     }
 
+    //retorna la expresión
     public Expresion getLaExpresion() {
         return laExpresion;
     }
 
+    //set de la expresión
     public void setLaExpresion(Expresion laExpresion) {
         this.laExpresion = laExpresion;
     }
 
+    //retorna el evaluador
     public Evaluador getElEvaluador() {
         return elEvaluador;
     }
 
+    //set del evaluador
     public void setElEvaluador(Evaluador elEvaluador) {
         this.elEvaluador = elEvaluador;
     }
     
+    
+    //carga el documento XML a un string de arraylist
     public ArrayList<String> cargarXML(File file){
         ArrayList<String> expresiones = null;
         expresiones = new ArrayList();
@@ -90,12 +97,14 @@ public class Modelo extends java.util.Observable {
         return expresiones;
     }
     
+    //Creador de elementos
     private static Node createUserElements(Document doc, Element element, String name, String value) {
         Element node = doc.createElement(name);
         node.appendChild(doc.createTextNode(value));
         return node;
     }
     
+    //Creador de elementos
     private static Node createUserElement(Document doc, String formula, String simplificada,String fndcanonica,String fnccanonica) {
         Element expresion = doc.createElement("expresion");
 
@@ -114,6 +123,7 @@ public class Modelo extends java.util.Observable {
         return expresion;
     }
     
+    //Creador de documentos XML
     public void crearXML(String nombreArch, String formula, String postfija, String simplificada,String fndcanonica,String fnccanonica){
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder;
@@ -148,10 +158,13 @@ public class Modelo extends java.util.Observable {
         }
     }
     
+    
+    //retorna la expresion de manera postfija
     public String getPostFija(String ex){
         return laExpresion.getPostFija(ex);
     }
     
+    //Validador de expresiones 
     public boolean expresionValida(String expresion){
         if(elEvaluador.verificar(expresion) && elEvaluador.counterP(expresion)){
             return true;
@@ -163,6 +176,8 @@ public class Modelo extends java.util.Observable {
      *
      * @param o
      */
+    
+    //Observer
     @Override
     public void addObserver(Observer o) {
         super.addObserver(o);

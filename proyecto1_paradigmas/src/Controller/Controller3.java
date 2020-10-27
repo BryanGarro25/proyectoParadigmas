@@ -28,6 +28,8 @@ public class Controller3 {
     private Modelo elmodelo;
     private Vista3 laVista;
     
+    
+    //Constructor
     public Controller3(Modelo elmodelo, Vista3 laVista) {
         this.elmodelo = elmodelo;
         this.laVista = laVista;
@@ -35,16 +37,19 @@ public class Controller3 {
    
     }
     
+    //Constructor
     public Controller3(){
     
     }
     
+    //Crea un nodo
     private static Node createUserElements(Document doc, Element element, String name, String value) {
         Element node = doc.createElement(name);
         node.appendChild(doc.createTextNode(value));
         return node;
     }
     
+    //Crea el element
     private static Node createUserElement(Document doc, String formula, String simplificada,String canonica) {
         Element expresion = doc.createElement("expresion");
 
@@ -63,6 +68,7 @@ public class Controller3 {
         return expresion;
     }
     
+    //Crea el documentos XML
     public void crearXML(String nombreArch, String formula, String simplificada,String canonica){
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder;

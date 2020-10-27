@@ -14,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Lencho-PC
  */
+
+
 public class Expresion {
     private String expresion;
     private String canonicaD;
@@ -24,6 +26,7 @@ public class Expresion {
     public Expresion() {
     }
 
+    //Constructor
     public Expresion(String expresion, String canonica , String resultado) {
         this.expresion = expresion;
         this.canonicaD = canonica;
@@ -32,6 +35,7 @@ public class Expresion {
         this.table = new DefaultTableModel();
     }
     
+    //Constructor 
     public Expresion(String expresion) {
         this.expresion = expresion;
         this.canonicaD = "";
@@ -41,47 +45,58 @@ public class Expresion {
         this.table = new DefaultTableModel();
     }
 
+    //retorna la tabla
     public DefaultTableModel getTable() {
         return table;
     }
-
+    
+    //set de la tabla
     public void setTable(DefaultTableModel table) {
         this.table = table;
     }
 
+    //retorna la expresión
     public String getExpresion() {
         return expresion;
     }
 
+    //set de la expresion
     public void setExpresion(String expresion) {
         this.expresion = expresion;
     }
 
+    //retorna la expresion canonica disyuntiva
     public String getCanonicaD() {
         return canonicaD;
     }
 
+    //set de la expresion canonica disyuntiva
     public void setCanonicaD(String canonica) {
         this.canonicaD = canonica;
     }
-
+    
+    //set de la expresion canonica
     public void setCanonicaH(String canonicaH) {
         this.canonicaC = canonicaH;
     }
-
+    
+    //retorna la expresion canonica
     public String getCanonicaH() {
         //s.substring(0, s.length() - 1);
         return canonicaC;
     }
 
+    //retorna el resultado de la expresion
     public String getResultado() {
         return resultado;
     }
 
+    //set del reusltado
     public void setResultado(String resultado) {
         this.resultado = resultado;
     }
 
+    //retorna la variables
     public List<String> getVariables() {
         return variables;
     }
@@ -91,6 +106,7 @@ public class Expresion {
         return "Expresion{" + "expresion=" + expresion + ", canonica distuntiva=" + canonicaD + ", resultado=" + resultado + '}';
     }
     
+    //Retorna la expresion de manera postfija de una expresion infija
     public String getPostFija(String Infija){
        Stack<Character> stack = new Stack<>();
         String PosFija = "";
@@ -170,6 +186,7 @@ public class Expresion {
 	return PosFija;
     }
     
+    //manejador de operadores
     boolean precede(char operadorIzquierdo, char operadorDerecho){
             //si izquierdo tiene mayor precedencia que derecho retorna true
             
@@ -234,6 +251,7 @@ public class Expresion {
 	return true;
 }
     
+    //Verifica si el siguiente caracter es un numero
     boolean esNum(char charActual){
         if (Character.isLetter(charActual)){
             
@@ -244,6 +262,8 @@ public class Expresion {
         }
         return false;
     }
+    
+    //Verifica si el siguiente caraacter es un operador
     boolean esOperador(char charActual){
 	switch (charActual) {
 	case '+':
@@ -257,6 +277,8 @@ public class Expresion {
 		return false;
 	}
     }
+    
+    //Verificia si el siguiente caracter es un signo
     boolean esSigno(int i, String Infija) {
         //-(p∧r) i = 0
 	int posAnt;
@@ -266,6 +288,8 @@ public class Expresion {
 
 
     }
+    
+    //Manjador de logica de operadores
     boolean resuelveOperador(ArrayList<Boolean> valores,String operador,String variableIzquierda, String variableDerecha){
         //tomar en cuenta que el menos funciona distinto y hay qeu jalar ambos datos
         //operador +, izq true, der g
@@ -325,6 +349,8 @@ public class Expresion {
             return !valorDerecha;
         }
     }
+    
+    //Evaluador de la expresion
     public boolean evaluar(String infija, ArrayList<Boolean> valores){
         //valores debe contener los valores true o false para cada variable, estos varian muchas veces y se generan aleatoreamente
         /*
@@ -377,6 +403,7 @@ public class Expresion {
         return Boolean.parseBoolean(stack.pop());
     }
     
+    //Generador de columnas para la tabla en la vista
     public void generarColumnas(Vista2 vista, String formula){
         
         this.getPostFija(formula);
@@ -388,6 +415,8 @@ public class Expresion {
         table.addColumn(formula);
         //vista.getTablaVerdad().setModel(table);
     }
+    
+    //generador de 0
     public String completarCeros (String binario,int tam){
         while(binario.length()!=tam)
             binario = "0"+binario;
@@ -395,6 +424,7 @@ public class Expresion {
         return binario;
     }
     
+    //Generador de columnas para la tabla en la vista
     public void generarFilas(Vista2 vista, String f){
         
         this.getPostFija(f);
@@ -432,6 +462,7 @@ public class Expresion {
         
     }
     
+    //Constructor de la expresiones canonicas
     public void setCanonicas(){
         int cant_cols = table.getColumnCount();
         int columna_con_resultados = cant_cols;

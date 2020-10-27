@@ -17,30 +17,38 @@ public class Evaluador {
     private String[] regex;
     private List<Expresion> expresiones;
 
+    //Constructor
     public Evaluador() {
     }
-
+    
+    
+    //Constructor
     public Evaluador(String[] regex, List<Expresion> expresiones) {
         this.regex = regex;
         this.expresiones = expresiones;
     }
 
+    //retorna la coleccion
     public String[] getRegex() {
         return regex;
     }
-
+    
+    //Set
     public void setRegex(String[] regex) {
         this.regex = regex;
     }
 
+    //retorna la lista de expresiones 
     public List<Expresion> getExpresiones() {
         return expresiones;
     }
 
+    //set de Expresiones
     public void setExpresiones(List<Expresion> expresiones) {
         this.expresiones = expresiones;
     }
 
+    //Verifica la expresion
     public boolean verificar(String expresion){
         
         String regex = "[-\\(-]*[a-z]([>!#\\+∧][-\\(]*-*[a-z]([>!#\\+∧][-\\(]*-*[a-z]\\)*)*)+\\)*([>!#\\+∧][-\\(-]*[a-z][>!#\\+∧]-*[a-z]\\)*)*";
@@ -50,6 +58,7 @@ public class Evaluador {
         return acepta.matches();
     }
     
+    //Contador para la expresion
     public boolean counterP(String line){
         int counterA = 0;
         int counterC = 0;

@@ -25,20 +25,27 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
     /**
      * Creates new form Vista2
      */
+    
+    //Configuracion de la vista
     public Vista2() {
         initComponents();
         this.setTitle("Formulas");
         this.tablaVerdad.getTableHeader().setReorderingAllowed(false);
     }
     
+    
+    //Set del controlador
     public void setController(Controller2 control){
         this.elControl=control;
     }
+    
+    //Set del modelo
     public void setModel(Modelo elModelo){
         this.elModelo=elModelo;
         elModelo.addObserver(this);
     }
     
+    //Constructor con parametros
     public Vista2(ArrayList<String> expresiones) {
         initComponents();
         this.setTitle("Formulas");
@@ -259,7 +266,8 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
         Controller3 logincontroller = new Controller3(domainModel,vista3);
         vista3.setVisible(true);
     }//GEN-LAST:event_guardarExpresionActionPerformed
-
+    
+    //Metodos para verificar la expresion dentro de la vista
     private void verificarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verificarButtonMouseClicked
         String m = textExpresion.getText().replaceAll("\\s","");
         if(elControl.expCorrecta(textExpresion.getText())){
@@ -333,13 +341,8 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton verificarButton;
     // End of variables declaration//GEN-END:variables
 
-    private String quitarUltimo(String m){
-        String mm = "";
-        for(int i = 0; i < m.length()-1; i++){
-           
-        }
-        return mm;
-    }
+    
+    //Actualiza la vista con la expresiones canonicas
     @Override
     public void update(Observable o, Object arg) {
         String fnd = elModelo.getLaExpresion().getCanonicaD();
