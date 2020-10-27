@@ -96,7 +96,6 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabla de Verdad"));
 
-        tablaVerdad.setAutoCreateColumnsFromModel(false);
         tablaVerdad.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

@@ -57,8 +57,10 @@ public class mainTest {
                 ArrayList<Boolean> valores = new ArrayList<>();
                 valores.add(false);
                  valores.add(false);
-                  valores.add(false);
+
                   System.out.println("Hilera " + line + " postfija: "+e.getPostFija(line) + " solucion: "+ e.evaluar(line,valores));
+                  System.out.println("Hilera " + line + " postfija: "+e.getPostFija(line) + " solucion: "+ e.evaluar(line, (ArrayList<Boolean>) valores));
+
                 Matcher acepta = patron.matcher(line);
                 
                 /*if(counterP(line) && acepta.matches()){
