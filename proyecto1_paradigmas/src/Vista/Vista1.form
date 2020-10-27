@@ -14,6 +14,9 @@
             <Property name="text" type="java.lang.String" value="Archivo"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="opcionArchivoMouseClicked"/>
+          </Events>
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="opcionNuevo">
               <Properties>
@@ -32,15 +35,13 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="opcionAbrirMouseClicked"/>
               </Events>
             </Menu>
-            <Menu class="javax.swing.JMenu" name="opcionGuardar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Guardar"/>
-              </Properties>
-            </Menu>
             <Menu class="javax.swing.JMenu" name="opcionSalir">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Salir"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="opcionSalirMouseClicked"/>
+              </Events>
             </Menu>
           </SubComponents>
         </Menu>

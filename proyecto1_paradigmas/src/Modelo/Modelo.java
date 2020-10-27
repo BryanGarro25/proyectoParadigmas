@@ -109,8 +109,7 @@ public class Modelo extends java.util.Observable {
         Element expresion = doc.createElement("expresion");
 
         // set formula attribute
-        expresion.setAttribute("formula", formula);
-
+       expresion.appendChild(createUserElements(doc, expresion, "formula", formula));
 
         // create inversa element
         expresion.appendChild(createUserElements(doc, expresion, "simplificada", simplificada));

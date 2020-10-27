@@ -10,6 +10,7 @@ import Controller.Controller3;
 import Modelo.Modelo;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,7 +24,8 @@ public class Vista3 extends javax.swing.JFrame implements Observer {
     String formula;
     String postfija;
     String simplificada;
-    String canonica;
+    String fndcanonica;
+    String fnccanonica;
 
     /**
      * Creates new form Vista3
@@ -34,11 +36,11 @@ public class Vista3 extends javax.swing.JFrame implements Observer {
         initComponents();
     }
 
-    public Vista3(String formula, String simplificada,String canonica) {
+    public Vista3(String formula, String simplificada,String fndcanonica,String fnccanonica) {
         initComponents();
-        this.canonica = canonica;
+        this.fndcanonica = fndcanonica;
+        this.fnccanonica = fnccanonica;
         this.formula = formula;
-        this.postfija = postfija;
         this.simplificada = simplificada;
         controller = new Controller3();
     }
@@ -127,9 +129,10 @@ public class Vista3 extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_guardarButtonMouseClicked
 
     private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
-        controller.crearXML(nombrefile.getText(), formula, simplificada, canonica);
+        controller.crearXML(nombrefile.getText(), formula, simplificada, fndcanonica,fnccanonica);
         this.setVisible(false);
         this.dispose(); 
+        JOptionPane.showMessageDialog(null, "El archivo xml se guardó en una carpeta dentro del proyecto llamada Formulas con el nombre "+nombrefile.getText());
     }//GEN-LAST:event_guardarButtonActionPerformed
 
     /**

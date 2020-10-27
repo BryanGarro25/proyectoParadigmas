@@ -261,7 +261,7 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_guardarExpresionMouseClicked
 
     private void guardarExpresionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarExpresionActionPerformed
-        Vista3 vista3 = new Vista3(textExpresion.getText(),simplificada.getText(),fndCanonica.getText());
+        Vista3 vista3 = new Vista3(textExpresion.getText(),simplificada.getText(),fndCanonica.getText(),fnccanonica.getText());
         Modelo domainModel = new Modelo(textExpresion.getText());
         Controller3 logincontroller = new Controller3(domainModel,vista3);
         vista3.setVisible(true);

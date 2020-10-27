@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<class>
+<expresion>
+<formula>t+g</formula>
+<simplificada>No lo logramos :(</simplificada>
+<fndcanonica>(-t∧g)v(t∧-g)</fndcanonica>
+<fnccanonica>(tvg)</fnccanonica>
+</expresion>
+</class>

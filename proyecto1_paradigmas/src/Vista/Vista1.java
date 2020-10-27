@@ -59,7 +59,6 @@ public class Vista1 extends javax.swing.JFrame implements Observer {
         opcionArchivo = new javax.swing.JMenu();
         opcionNuevo = new javax.swing.JMenu();
         opcionAbrir = new javax.swing.JMenu();
-        opcionGuardar = new javax.swing.JMenu();
         opcionSalir = new javax.swing.JMenu();
         opcionVista = new javax.swing.JMenu();
         herramientas = new javax.swing.JMenu();
@@ -84,6 +83,11 @@ public class Vista1 extends javax.swing.JFrame implements Observer {
 
         opcionArchivo.setText("Archivo");
         opcionArchivo.setToolTipText("");
+        opcionArchivo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                opcionArchivoMouseClicked(evt);
+            }
+        });
 
         opcionNuevo.setText("Nuevo ");
         opcionNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -106,10 +110,12 @@ public class Vista1 extends javax.swing.JFrame implements Observer {
         });
         opcionArchivo.add(opcionAbrir);
 
-        opcionGuardar.setText("Guardar");
-        opcionArchivo.add(opcionGuardar);
-
         opcionSalir.setText("Salir");
+        opcionSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                opcionSalirMouseClicked(evt);
+            }
+        });
         opcionArchivo.add(opcionSalir);
 
         jMenuBar1.add(opcionArchivo);
@@ -189,6 +195,15 @@ public class Vista1 extends javax.swing.JFrame implements Observer {
         }
     }//GEN-LAST:event_opcionAbrirMouseClicked
 
+    private void opcionArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcionArchivoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_opcionArchivoMouseClicked
+
+    private void opcionSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcionSalirMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_opcionSalirMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -232,7 +247,6 @@ public class Vista1 extends javax.swing.JFrame implements Observer {
     private javax.swing.JMenu opcionAbrir;
     private javax.swing.JMenu opcionArchivo;
     private javax.swing.JMenu opcionEdicion;
-    private javax.swing.JMenu opcionGuardar;
     private javax.swing.JMenu opcionNuevo;
     private javax.swing.JMenu opcionSalir;
     private javax.swing.JMenu opcionVista;

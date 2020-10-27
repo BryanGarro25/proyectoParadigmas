@@ -50,26 +50,25 @@ public class Controller3 {
     }
     
     //Crea el element
-    private static Node createUserElement(Document doc, String formula, String simplificada,String canonica) {
+    private static Node createUserElement(Document doc, String formula, String simplificada,String fndcanonica,String fnccanonica) {
         Element expresion = doc.createElement("expresion");
 
         // set formula attribute
-        expresion.appendChild(createUserElements(doc, expresion, "formula", formula));
-
-        
+       expresion.appendChild(createUserElements(doc, expresion, "formula", formula));
 
         // create inversa element
         expresion.appendChild(createUserElements(doc, expresion, "simplificada", simplificada));
 
         // create canonica element
-        expresion.appendChild(createUserElements(doc, expresion, "canonica", canonica));
+        expresion.appendChild(createUserElements(doc, expresion, "fndcanonica", fndcanonica));
 
-
+        
+        expresion.appendChild(createUserElements(doc, expresion, "fnccanonica", fnccanonica));
         return expresion;
     }
     
     //Crea el documentos XML
-    public void crearXML(String nombreArch, String formula, String simplificada,String canonica){
+    public void crearXML(String nombreArch, String formula, String simplificada,String fndcanonica, String fnccanonica){
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder;
         try {
@@ -81,7 +80,7 @@ public class Controller3 {
             doc.appendChild(rootElement);
 
             // append first child element to root element
-            rootElement.appendChild(createUserElement(doc, formula, simplificada, canonica));
+            rootElement.appendChild(createUserElement(doc, formula, simplificada, fndcanonica,fnccanonica));
 
             // for output to file, console
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
