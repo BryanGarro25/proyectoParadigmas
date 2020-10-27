@@ -9,6 +9,7 @@ import Modelo.CreaTabla;
 import Modelo.Modelo;
 import Vista.Vista2;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,7 +32,10 @@ public class Controller2 {
     public String getPostfija(String m){
         return elmodelo.getPostFija(m);
     }
-    
+    public void limpiarTabla(){
+        elmodelo.getLaExpresion().setTable(new DefaultTableModel());
+        elmodelo.commit();
+    }
     public void llenarTabla(Vista2 v,String formula){
         elmodelo.getLaExpresion().generarColumnas(v,formula);
         elmodelo.getLaExpresion().generarFilas(v,formula);

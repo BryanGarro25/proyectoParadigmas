@@ -43,6 +43,10 @@ public class Expresion {
         return table;
     }
 
+    public void setTable(DefaultTableModel table) {
+        this.table = table;
+    }
+
     public String getExpresion() {
         return expresion;
     }

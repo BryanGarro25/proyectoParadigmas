@@ -27,6 +27,7 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
     public Vista2() {
         initComponents();
         this.setTitle("Formulas");
+        this.tablaVerdad.getTableHeader().setReorderingAllowed(false);
     }
     
     public void setController(Controller2 control){
@@ -229,7 +230,8 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_guardarExpresionActionPerformed
 
     private void verificarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verificarButtonMouseClicked
-       String formula = textExpresion.getText();
+      elControl.limpiarTabla();
+        String formula = textExpresion.getText();
        elControl.llenarTabla(this,formula);
        simplificada.setText("No lo logramos :(");
 //       canonica.setText(formula);
