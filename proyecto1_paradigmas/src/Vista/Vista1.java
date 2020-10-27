@@ -164,6 +164,7 @@ public class Vista1 extends javax.swing.JFrame implements Observer {
             
             expresiones = elControl.cargarXML(fichero);
             if(expresiones != null){
+              
                 Vista2 vista2 = new Vista2(expresiones); 
                 vista2.setVisible(true);
             }

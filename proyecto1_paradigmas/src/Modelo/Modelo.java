@@ -149,6 +149,13 @@ public class Modelo extends java.util.Observable {
         return laExpresion.getPostFija(ex);
     }
     
+    public boolean expresionValida(String expresion){
+        if(elEvaluador.verificar(expresion) && elEvaluador.counterP(expresion)){
+            return true;
+        }else{
+            return false;
+        }
+    }
     /**
      *
      * @param o

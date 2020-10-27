@@ -41,4 +41,8 @@ public class Controller2 {
         elmodelo.getLaExpresion().generarFilas(v,formula);
         elmodelo.commit();
     }
+    
+    public boolean expCorrecta(String f){
+        return elmodelo.expresionValida(f);
+    }
 }

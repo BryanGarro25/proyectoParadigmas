@@ -6,6 +6,8 @@
 package Modelo;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -39,12 +41,31 @@ public class Evaluador {
         this.expresiones = expresiones;
     }
 
+    public boolean verificar(String expresion){
+        
+        String regex = "[-\\(-]*[a-z]([>!#\\+∧][-\\(]*-*[a-z]([>!#\\+∧][-\\(]*-*[a-z]\\)*)*)+\\)*([>!#\\+∧][-\\(-]*[a-z][>!#\\+∧]-*[a-z]\\)*)*";
+        Pattern patron = Pattern.compile(regex);
+        Matcher acepta = patron.matcher(expresion);
+        
+        return acepta.matches();
+    }
+    
+    public boolean counterP(String line){
+        int counterA = 0;
+        int counterC = 0;
+        for(int i = 0; i<line.length();i++){
+            if(line.charAt(i)=='('){
+                counterA++;
+            }else if(line.charAt(i)==')'){
+                counterC++;
+            }
+        }
+        return counterA==counterC;
+    }
+    
     @Override
     public String toString() {
         return "Evaluador{" + "regex=" + regex + ", expresiones=" + expresiones + '}';
     }
-    
-    
-    
     
 }

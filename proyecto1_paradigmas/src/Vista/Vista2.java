@@ -11,6 +11,7 @@ import Modelo.Modelo;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
@@ -88,7 +89,7 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(simplificada, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 16, Short.MAX_VALUE))
+                .addGap(0, 25, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,13 +231,18 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_guardarExpresionActionPerformed
 
     private void verificarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verificarButtonMouseClicked
-      elControl.limpiarTabla();
+        String m = textExpresion.getText().replaceAll("\\s","");
+        if(elControl.expCorrecta(textExpresion.getText())){
+        elControl.limpiarTabla();
         String formula = textExpresion.getText();
        elControl.llenarTabla(this,formula);
        simplificada.setText("No lo logramos :(");
 //       canonica.setText(formula);
 //       formapostfija.setText(formula);
 //       simplificada.setText(formula);
+      }else{
+          JOptionPane.showMessageDialog(null, "La expresión está mal escrita");
+      }
     }//GEN-LAST:event_verificarButtonMouseClicked
 
     public JTable getTablaVerdad() {
