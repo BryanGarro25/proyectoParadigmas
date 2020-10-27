@@ -53,6 +53,7 @@ public class Modelo extends java.util.Observable {
     
     public ArrayList<String> cargarXML(File file){
         ArrayList<String> expresiones = null;
+        expresiones = new ArrayList();
         try{  
             //creating a constructor of file class and parsing an XML file  
             
@@ -66,7 +67,6 @@ public class Modelo extends java.util.Observable {
             // nodeList is not iterable, so we are using for loop   
         //}
             NodeList nodeList = doc.getElementsByTagName("expresion");
-            expresiones = new ArrayList();
             // nodeList is not iterable, so we are using for loop  
             for (int itr = 0; itr < nodeList.getLength(); itr++) {
                 Node node = nodeList.item(itr);

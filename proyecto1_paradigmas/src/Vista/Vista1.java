@@ -164,9 +164,23 @@ public class Vista1 extends javax.swing.JFrame implements Observer {
             
             expresiones = elControl.cargarXML(fichero);
             if(expresiones != null){
-              
-                Vista2 vista2 = new Vista2(expresiones); 
-                vista2.setVisible(true);
+             
+                if(expresiones.size() > 3){
+                    ArrayList<String> aux;
+                    int i = 0;
+                    while(i < expresiones.size()){
+                        aux = new ArrayList();
+                        aux.add(expresiones.get(i));
+                        aux.add(expresiones.get(i+1));
+                        aux.add(expresiones.get(i+2));
+                        Vista2 vista2 = new Vista2(expresiones); 
+                        vista2.setVisible(true);
+                        i= i+3;
+                    }
+                }else{
+                    Vista2 vista2 = new Vista2(expresiones); 
+                    vista2.setVisible(true);
+                }
             }
         }
     }//GEN-LAST:event_opcionAbrirMouseClicked
