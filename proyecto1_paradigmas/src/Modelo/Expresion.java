@@ -485,5 +485,11 @@ public class Expresion {
             
         }//first for j
     
+        if(this.canonicaD.length()>0){
+            canonicaD = canonicaD.substring(0,canonicaD.length()-1);
+        }
+        if(this.canonicaC.length()>0){
+            canonicaC = canonicaC.substring(0,canonicaC.length()-1);
+        }
     }
 }
