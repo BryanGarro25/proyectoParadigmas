@@ -16,7 +16,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Expresion {
     private String expresion;
-    private String canonica;
+    private String canonicaD;
+    private String canonicaC;
     private String resultado;
     private List<String> variables;
     private DefaultTableModel table;
@@ -25,7 +26,7 @@ public class Expresion {
 
     public Expresion(String expresion, String canonica , String resultado) {
         this.expresion = expresion;
-        this.canonica = canonica;
+        this.canonicaD = canonica;
         this.resultado = resultado;
         variables = new ArrayList<>();
         this.table = new DefaultTableModel();
@@ -33,7 +34,8 @@ public class Expresion {
     
     public Expresion(String expresion) {
         this.expresion = expresion;
-        this.canonica = "";
+        this.canonicaD = "";
+        this.canonicaC = "";
         this.resultado = "";
         variables = new ArrayList<>();
         this.table = new DefaultTableModel();
@@ -55,12 +57,20 @@ public class Expresion {
         this.expresion = expresion;
     }
 
-    public String getCanonica() {
-        return canonica;
+    public String getCanonicaD() {
+        return canonicaD;
     }
 
-    public void setCanonica(String canonica) {
-        this.canonica = canonica;
+    public void setCanonicaD(String canonica) {
+        this.canonicaD = canonica;
+    }
+
+    public void setCanonicaH(String canonicaH) {
+        this.canonicaC = canonicaH;
+    }
+
+    public String getCanonicaH() {
+        return canonicaC;
     }
 
     public String getResultado() {
@@ -77,7 +87,7 @@ public class Expresion {
 
     @Override
     public String toString() {
-        return "Expresion{" + "expresion=" + expresion + ", canonica=" + canonica + ", resultado=" + resultado + '}';
+        return "Expresion{" + "expresion=" + expresion + ", canonica distuntiva=" + canonicaD + ", resultado=" + resultado + '}';
     }
     
     public String getPostFija(String Infija){
@@ -159,8 +169,6 @@ public class Expresion {
 	return PosFija;
     }
     
-    
-    
     boolean precede(char operadorIzquierdo, char operadorDerecho){
             //si izquierdo tiene mayor precedencia que derecho retorna true
             
@@ -224,9 +232,6 @@ public class Expresion {
 
 	return true;
 }
-    
-    
-    
     
     boolean esNum(char charActual){
         if (Character.isLetter(charActual)){
@@ -371,8 +376,6 @@ public class Expresion {
         return Boolean.parseBoolean(stack.pop());
     }
     
-    
-    
     public void generarColumnas(Vista2 vista, String formula){
         
         this.getPostFija(formula);
@@ -426,5 +429,56 @@ public class Expresion {
         }
         vista.getTablaVerdad().setModel(table);
         
+    }
+    
+    public void setCanonicas(){
+        int cant_cols = table.getColumnCount();
+        int columna_con_resultados = cant_cols;
+        cant_cols--;
+        int cant_rows = table.getRowCount();
+        int row_con_variables = 0;  
+        
+        //canonicaD
+        //canonicaC
+        for(int row=1; row<cant_rows ; row++){
+            String D = "(";
+            String C = "(";
+            for(int col=0;col<cant_cols;col++){
+                String variable_Actual = variables.get(col);
+                String resultado_de_row = String.valueOf((Boolean)table.getValueAt(row-1, columna_con_resultados-1));
+                String actual = (String)table.getValueAt(row-1, col);
+                
+                if(resultado_de_row.equals("true")){
+                    if(D.length()>=2){ //aqui se arma la Disyuntiva
+                        D+="∧";
+                    }
+                    if(actual.equals("V")){
+                        D+=variable_Actual;
+                    }
+                    else if(actual.equals("F")){
+                        D+="-"+variable_Actual;
+                    }
+                }else if(resultado_de_row.equals("false")){
+                    if(C.length()>=2){//aqui se arma la conjuntiva
+                        C+="v";
+                    }
+                    if(actual.equals("V")){
+                        D+="-"+variable_Actual;
+                    }
+                    else if(actual.equals("F")){
+                        D+=variable_Actual;
+                    }
+                }
+            }//second for
+            if(D.equals("(")){
+                C+=")";
+                this.canonicaC += C + "∧";
+            }else{
+                D+=")";
+                this.canonicaD += D + "v";
+            }
+            
+        }//first for
+    
     }
 }

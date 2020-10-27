@@ -297,6 +297,10 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         this.tablaVerdad.setModel(elModelo.getLaExpresion().getTable());
+        this.canonica.setText("Canonica Disyuntiva:" + elModelo.getLaExpresion().getCanonicaD()+"\n"+
+        "Canonica Conjuntiva:" + elModelo.getLaExpresion().getCanonicaH()+"\n"
+        
+                             );
         this.addNotify();
     }
 }

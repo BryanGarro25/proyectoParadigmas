@@ -39,6 +39,7 @@ public class Controller2 {
     public void llenarTabla(Vista2 v,String formula){
         elmodelo.getLaExpresion().generarColumnas(v,formula);
         elmodelo.getLaExpresion().generarFilas(v,formula);
+        elmodelo.getLaExpresion().setCanonicas();
         elmodelo.commit();
     }
 }
