@@ -261,32 +261,40 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
     }//GEN-LAST:event_guardarExpresionMouseClicked
 
     private void guardarExpresionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarExpresionActionPerformed
-        Vista3 vista3 = new Vista3(textExpresion.getText(),simplificada.getText(),fndCanonica.getText(),fnccanonica.getText());
-        Modelo domainModel = new Modelo(textExpresion.getText());
-        Controller3 logincontroller = new Controller3(domainModel,vista3);
-        vista3.setVisible(true);
+        if(textExpresion.getText().equals("") || simplificada.getText().equals("") || fndCanonica.getText().equals("")||fndCanonica.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe evaluar una expresión primero");
+        }else{
+        
+            Vista3 vista3 = new Vista3(textExpresion.getText(),simplificada.getText(),fndCanonica.getText(),fnccanonica.getText());
+            Modelo domainModel = new Modelo(textExpresion.getText());
+            Controller3 logincontroller = new Controller3(domainModel,vista3);
+            vista3.setVisible(true);
+        }
     }//GEN-LAST:event_guardarExpresionActionPerformed
     
     //Metodos para verificar la expresion dentro de la vista
     private void verificarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verificarButtonMouseClicked
-        String m = textExpresion.getText().replaceAll("\\s","");
-        elModelo.getLaExpresion().setCanonicaD("");
-        elModelo.getLaExpresion().setCanonicaH("");
-        m = m.replaceAll("<->", "!");
-        m = m.replaceAll("->", ">");
-        m = m.replaceAll("\\*", "∧");
-        m = m.replaceAll("--", ""); //elimina doble negacion
-        if(elControl.expCorrecta(m)){
-        elControl.limpiarTabla();
-        String formula = textExpresion.getText();
-       elControl.llenarTabla(this,formula);
-       simplificada.setText("No lo logramos :(");
-//       canonica.setText(formula);
-//       formapostfija.setText(formula);
-//       simplificada.setText(formula);
-      }else{
-          JOptionPane.showMessageDialog(null, "La expresión está mal escrita");
-      }
+        if(textExpresion.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe ingresar una expresión");
+        }else{
+            String m = textExpresion.getText().replaceAll("\\s","");
+            elModelo.getLaExpresion().setCanonicaD("");
+            elModelo.getLaExpresion().setCanonicaH("");
+            m = m.replaceAll("<->", "!");
+            m = m.replaceAll("->", ">");
+            m = m.replaceAll("\\*", "∧");
+            if(elControl.expCorrecta(m)){
+            elControl.limpiarTabla();
+            String formula = textExpresion.getText();
+           elControl.llenarTabla(this,formula);
+           simplificada.setText("No lo logramos :(");
+    //       canonica.setText(formula);
+    //       formapostfija.setText(formula);
+    //       simplificada.setText(formula);
+          }else{
+              JOptionPane.showMessageDialog(null, "La expresión está mal escrita");
+          }
+        }
     }//GEN-LAST:event_verificarButtonMouseClicked
 
     public JTable getTablaVerdad() {
