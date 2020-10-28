@@ -274,23 +274,27 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
     
     //Metodos para verificar la expresion dentro de la vista
     private void verificarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verificarButtonMouseClicked
-        String m = textExpresion.getText().replaceAll("\\s","");
-        elModelo.getLaExpresion().setCanonicaD("");
-        elModelo.getLaExpresion().setCanonicaH("");
-        m = m.replaceAll("<->", "!");
-        m = m.replaceAll("->", ">");
-        m = m.replaceAll("\\*", "∧");
-        if(elControl.expCorrecta(m)){
-        elControl.limpiarTabla();
-        String formula = textExpresion.getText();
-       elControl.llenarTabla(this,formula);
-       simplificada.setText("No lo logramos :(");
-//       canonica.setText(formula);
-//       formapostfija.setText(formula);
-//       simplificada.setText(formula);
-      }else{
-          JOptionPane.showMessageDialog(null, "La expresión está mal escrita");
-      }
+        if(textExpresion.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe ingresar una expresión");
+        }else{
+            String m = textExpresion.getText().replaceAll("\\s","");
+            elModelo.getLaExpresion().setCanonicaD("");
+            elModelo.getLaExpresion().setCanonicaH("");
+            m = m.replaceAll("<->", "!");
+            m = m.replaceAll("->", ">");
+            m = m.replaceAll("\\*", "∧");
+            if(elControl.expCorrecta(m)){
+            elControl.limpiarTabla();
+            String formula = textExpresion.getText();
+           elControl.llenarTabla(this,formula);
+           simplificada.setText("No lo logramos :(");
+    //       canonica.setText(formula);
+    //       formapostfija.setText(formula);
+    //       simplificada.setText(formula);
+          }else{
+              JOptionPane.showMessageDialog(null, "La expresión está mal escrita");
+          }
+        }
     }//GEN-LAST:event_verificarButtonMouseClicked
 
     public JTable getTablaVerdad() {
