@@ -270,7 +270,12 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
     //Metodos para verificar la expresion dentro de la vista
     private void verificarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verificarButtonMouseClicked
         String m = textExpresion.getText().replaceAll("\\s","");
-        if(elControl.expCorrecta(textExpresion.getText())){
+        elModelo.getLaExpresion().setCanonicaD("");
+        elModelo.getLaExpresion().setCanonicaH("");
+        m = m.replaceAll("<->", "!");
+        m = m.replaceAll("->", ">");
+        m = m.replaceAll("\\*", "∧");
+        if(elControl.expCorrecta(m)){
         elControl.limpiarTabla();
         String formula = textExpresion.getText();
        elControl.llenarTabla(this,formula);

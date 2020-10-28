@@ -472,7 +472,7 @@ public class Expresion {
         
         //canonicaD
         //canonicaC
-        for(int row=1; row<cant_rows ; row++){
+        for(int row=1; row<cant_rows+1 ; row++){
             String D = "(";
             String C = "(";
             for(int col=0;col<cant_cols;col++){
