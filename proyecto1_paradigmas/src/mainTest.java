@@ -55,7 +55,7 @@ public class mainTest {
                 
               
                 
-                line = line.replaceAll("--", ""); //elimina doble negacion
+                
                 ArrayList<Boolean> valores = new ArrayList<>();
                 valores.add(false);
                  valores.add(false);

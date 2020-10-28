@@ -275,6 +275,7 @@ public class Vista2 extends javax.swing.JFrame implements Observer {
         m = m.replaceAll("<->", "!");
         m = m.replaceAll("->", ">");
         m = m.replaceAll("\\*", "∧");
+        m = m.replaceAll("--", ""); //elimina doble negacion
         if(elControl.expCorrecta(m)){
         elControl.limpiarTabla();
         String formula = textExpresion.getText();

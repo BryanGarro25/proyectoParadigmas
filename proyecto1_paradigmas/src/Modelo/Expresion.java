@@ -364,7 +364,7 @@ public class Expresion {
         infija = infija.replaceAll("<->", "!");
         infija = infija.replaceAll("->", ">");
         infija = infija.replaceAll("\\*", "∧");
-        
+        infija = infija.replaceAll("--", ""); //elimina doble negacion
         String postFija = this.getPostFija(infija);
         Stack<String> stack = new Stack<>();
         
